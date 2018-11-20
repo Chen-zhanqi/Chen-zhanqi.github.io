@@ -88,7 +88,7 @@
 <meta property="og:description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。其最初是为了页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。Scrapy用途广泛，可以用于数据挖掘、监测和自动化测试 Scrapy框架组">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://chen-zhanqi.github.io/2018/11/02/Scrapy框架/01.png">
-<meta property="og:updated_time" content="2018-11-02T11:43:04.900Z">
+<meta property="og:updated_time" content="2018-11-20T07:17:15.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scrapy爬虫框架概述">
 <meta name="twitter:description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。其最初是为了页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。Scrapy用途广泛，可以用于数据挖掘、监测和自动化测试 Scrapy框架组">
@@ -353,7 +353,9 @@
 <li><h5 id="项目管道-Pipeline"><a href="#项目管道-Pipeline" class="headerlink" title="项目管道(Pipeline)"></a>项目管道(Pipeline)</h5>负责处理爬虫从网页中抽取的实体，主要的功能是持久化实体、验证实体的有效性、清除不需要的信息。当页面被爬虫解析后，将被发送到项目管道，并经过几个特定的次序处理数据。</li>
 <li><h5 id="下载器中间件-Downloader-Middlewares"><a href="#下载器中间件-Downloader-Middlewares" class="headerlink" title="下载器中间件(Downloader Middlewares)"></a>下载器中间件(Downloader Middlewares)</h5>位于Scrapy引擎和下载器之间的框架，主要是处理Scrapy引擎与下载器之间的请求及响应。</li>
 <li><h5 id="爬虫中间件-Spider-Middlewares"><a href="#爬虫中间件-Spider-Middlewares" class="headerlink" title="爬虫中间件(Spider Middlewares)"></a>爬虫中间件(Spider Middlewares)</h5>介于Scrapy引擎和爬虫之间的框架，主要工作是处理蜘蛛的响应输入和请求输出。</li>
-<li><h5 id="调度中间件-Scheduler-Middewares"><a href="#调度中间件-Scheduler-Middewares" class="headerlink" title="调度中间件(Scheduler Middewares)"></a>调度中间件(Scheduler Middewares)</h5>介于Scrapy引擎和调度之间的中间件，从Scrapy引擎发送到调度的请求和响应<h4 id="Scrapy运行流程"><a href="#Scrapy运行流程" class="headerlink" title="Scrapy运行流程"></a>Scrapy运行流程</h4></li>
+<li><h5 id="调度中间件-Scheduler-Middewares"><a href="#调度中间件-Scheduler-Middewares" class="headerlink" title="调度中间件(Scheduler Middewares)"></a>调度中间件(Scheduler Middewares)</h5>介于Scrapy引擎和调度之间的中间件，从Scrapy引擎发送到调度的请求和响应</li>
+</ul>
+<h4 id="Scrapy运行流程"><a href="#Scrapy运行流程" class="headerlink" title="Scrapy运行流程"></a>Scrapy运行流程</h4><ul>
 <li>引擎从调度器中取出一个链接(URL)用于接下来的抓取</li>
 <li>引擎把URL封装成一个请求(Request)传给下载器</li>
 <li>下载器把资源下载下来，并封装成应答包(Response)</li>
@@ -486,7 +488,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,7 +499,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -508,7 +510,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
