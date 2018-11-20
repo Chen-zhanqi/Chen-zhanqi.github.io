@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="scrapy,部署," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便.scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大,下面就是介绍scrapyd的安装与使用… 一. 安装/配置scrapyd 打开命令行工具执行pip install scrapyd 输入scrapyd启动scrapyd服务 浏览器输入127.0.0.1:68">
+<meta name="keywords" content="scrapy,部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scrapyd部署爬虫项目">
+<meta property="og:url" content="http://Chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/index.html">
+<meta property="og:site_name" content="克己 慎独 ">
+<meta property="og:description" content="scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便.scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大,下面就是介绍scrapyd的安装与使用… 一. 安装/配置scrapyd 打开命令行工具执行pip install scrapyd 输入scrapyd启动scrapyd服务 浏览器输入127.0.0.1:68">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/01.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/02.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/03.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/04.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/06.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/05.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/08.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/09.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/10.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/11.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/12.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/15.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/14.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/13.png">
+<meta property="og:updated_time" content="2018-11-02T09:48:25.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="scrapyd部署爬虫项目">
+<meta name="twitter:description" content="scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便.scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大,下面就是介绍scrapyd的安装与使用… 一. 安装/配置scrapyd 打开命令行工具执行pip install scrapyd 输入scrapyd启动scrapyd服务 浏览器输入127.0.0.1:68">
+<meta name="twitter:image" content="http://chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/"/>
+
+
+
+
+
+  <title>scrapyd部署爬虫项目 | 克己 慎独 </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Chen-zhanqi/Chen-zhanqi.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">克己 慎独 </span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Chen-zhanqi.github.io/2018/09/27/scrapyd-bushu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.xker.com/xkerfiles/allimg/1603/1_160330092349_3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="克己 慎独 ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">scrapyd部署爬虫项目</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-27T21:19:07+08:00">
+                2018-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Scrapy框架爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">Scrapy框架爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便-scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大-下面就是介绍scrapyd的安装与使用…"><a href="#scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便-scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大-下面就是介绍scrapyd的安装与使用…" class="headerlink" title="scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便.scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大,下面就是介绍scrapyd的安装与使用…"></a><em>scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便.scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大,下面就是介绍scrapyd的安装与使用…</em></h4><hr>
+<h2 id="一-安装-配置scrapyd"><a href="#一-安装-配置scrapyd" class="headerlink" title="一. 安装/配置scrapyd"></a>一. 安装/配置scrapyd</h2><ul>
+<li>打开命令行工具执行<strong>pip install scrapyd</strong><br><img src="/2018/09/27/scrapyd-bushu/01.png" alt=""></li>
+<li>输入scrapyd启动scrapyd服务<br><img src="/2018/09/27/scrapyd-bushu/02.png" alt=""></li>
+<li>浏览器输入127.0.0.1:6800,如下图启动成功<br><img src="/2018/09/27/scrapyd-bushu/03.png" alt=""></li>
+<li>在非C盘下创建一个scrapydTest(自定义)文件夹,此文件夹是用来部署爬虫项目;命令行工具cd进入scrapydTest文件夹;输入scrapyd执行，执行完成后会自动新建一个dbs空文件夹，用来存放爬虫项目的数据文件;这个命令行工具一直处于运行状态,以下操作打开新命令行工具<br><img src="/2018/09/27/scrapyd-bushu/04.png" alt=""></li>
+<li>安装scrapyd-client模块。scrapyd-client模块是专门打包scrapy爬虫项目到scrapyd服务中的，进入py环境，执行命令 <strong>pip install scrapy-client</strong>，安装完成后，在python安装目录的scripts文件夹中会出现scrapyd-deploy无后缀文件，这个scrapyd-deploy无后缀文件是启动文件，在Linux系统下可以远行，在windows下是不能运行的，所以我们需要编辑一下使其在windows可以运行<br><img src="/2018/09/27/scrapyd-bushu/06.png" alt=""></li>
+<li>新建一个scrapyd-deploy.bat文件,如上图;右键选择编辑，输入以下配置<br>@echo off<br>“C:\Users\qianzhen\Envs\scrapySpider\Scripts\python.exe” “C:\Users\qianzhen\Envs\scrapySpider\Scripts\scrapyd-deploy” %1 %2 %3 %4 %5 %6 %7 %8 %9<br><img src="/2018/09/27/scrapyd-bushu/05.png" alt=""><br><strong>注意：两个路径之间是空格，一定要使用双引号。单引号的话会错误。两个路经是自己的python路经</strong></li>
+</ul>
+<h2 id="二-部署-启动项目"><a href="#二-部署-启动项目" class="headerlink" title="二.部署/启动项目"></a>二.部署/启动项目</h2><ul>
+<li>编辑器打开爬虫项目中的scrapy.cfg文件，这个文件就是给scrapyd-deploy使用的<br>将url这行代码解掉注释，并且给设置你的部署名称<br><img src="/2018/09/27/scrapyd-bushu/08.png" alt=""></li>
+<li>再次执行scrapyd-deploy -l 启动服务，可以看到设置的名称,接下来可以开始打包了<br><img src="/2018/09/27/scrapyd-bushu/09.png" alt=""></li>
+<li>开始打包前，执行一个命令：scrapy list ,这个命令执行成功说明可以打包了,如果没执行成功,说明还有工作没完成;以上步骤没有出错,一般不会出现问题<br><img src="/2018/09/27/scrapyd-bushu/10.png" alt=""></li>
+<li>如果错误提示，什么远程计算机拒绝，说明你的scrapy项目有链接远程计算机，如链接数据库或者elasticsearch(搜索引擎)之类的，需要先将链接服务器启动<br>执行 scrapy list  命令返回了爬虫名称说明一切ok了，如上图,继续go…</li>
+<li>执行打包命令： scrapyd-deploy 部署名称 -p 项目名称<br>如：scrapyd-deploy tt -p mytest<br>如下显示表示scrapy项目打包成功,scrapydTest下egg文件夹中有项目即可<br><img src="/2018/09/27/scrapyd-bushu/11.png" alt=""></li>
+<li>网页中127.0.0.1:6800查看是否部署到服务器<br><img src="/2018/09/27/scrapyd-bushu/12.png" alt=""></li>
+<li>最后就是通过scrapyd命令(API)接口发送请求,比如通过请求启动刚部署服务器上的爬虫项目<br>命令输入:<strong>curl <a href="http://127.0.0.1:6800/schedule.json" target="_blank" rel="noopener">http://127.0.0.1:6800/schedule.json</a> -d project=项目名称 -d spider=爬虫名称</strong><br>如: curl <a href="http://127.0.0.1:6800/schedule.json" target="_blank" rel="noopener">http://127.0.0.1:6800/schedule.json</a> -d project=mytest -d spider=tt<br><img src="/2018/09/27/scrapyd-bushu/15.png" alt=""></li>
+<li>jobs中查看爬虫状态<br><img src="/2018/09/27/scrapyd-bushu/14.png" alt=""></li>
+</ul>
+<ul>
+<li><strong>其他请求接口可通过<a href="https://scrapyd.readthedocs.io/en/stable/api.html#" target="_blank" rel="noopener">官方文档</a>查看,如下图,全英文看不懂,没关系,有谷歌..;</strong><br><img src="/2018/09/27/scrapyd-bushu/13.png" alt=""></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/scrapy/" rel="tag"><i class="fa fa-tag"></i> scrapy</a>
+          
+            <a href="/tags/部署/" rel="tag"><i class="fa fa-tag"></i> 部署</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/18/python/" rel="next" title="正则表达式">
+                <i class="fa fa-chevron-left"></i> 正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/scrapy-redis/" rel="prev" title="Scrapy基于scrapy_redis部署分布式爬虫">
+                Scrapy基于scrapy_redis部署分布式爬虫 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.xker.com/xkerfiles/allimg/1603/1_160330092349_3.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web导航" target="_blank">Web导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便-scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大-下面就是介绍scrapyd的安装与使用…"><span class="nav-number">1.</span> <span class="nav-text">scrapy爬虫写好后，需要用命令行运行，如果能在网页上操作就比较方便.scrapyd部署就是为了解决这个问题，能够在网页端查看正在执行的任务，也能新建爬虫任务，和终止爬虫任务，功能比较强大,下面就是介绍scrapyd的安装与使用…</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一-安装-配置scrapyd"><span class="nav-number"></span> <span class="nav-text">一. 安装/配置scrapyd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-部署-启动项目"><span class="nav-number"></span> <span class="nav-text">二.部署/启动项目</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
