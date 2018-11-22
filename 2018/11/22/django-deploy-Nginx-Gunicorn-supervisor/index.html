@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一 前景简介 NginxNginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外nginx可以作为反向代理进行负载均衡的实现 GunicornGunicorn“绿色独角兽”是一个被广泛使用的高性能的Python WSGI UNIX HTTP服务器，移植自Ruby的独角兽（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Nginx+Gunicorn+virtualenv+supervisor部署django项目">
+<meta property="og:url" content="http://Chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/index.html">
+<meta property="og:site_name" content="世无常景 只争朝夕">
+<meta property="og:description" content="一 前景简介 NginxNginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外nginx可以作为反向代理进行负载均衡的实现 GunicornGunicorn“绿色独角兽”是一个被广泛使用的高性能的Python WSGI UNIX HTTP服务器，移植自Ruby的独角兽（">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/01.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/02.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/03.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/04.png">
+<meta property="og:image" content="http://chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/05.png">
+<meta property="og:updated_time" content="2018-11-22T14:11:06.297Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Nginx+Gunicorn+virtualenv+supervisor部署django项目">
+<meta name="twitter:description" content="一 前景简介 NginxNginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外nginx可以作为反向代理进行负载均衡的实现 GunicornGunicorn“绿色独角兽”是一个被广泛使用的高性能的Python WSGI UNIX HTTP服务器，移植自Ruby的独角兽（">
+<meta name="twitter:image" content="http://chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/"/>
+
+
+
+
+
+  <title>使用Nginx+Gunicorn+virtualenv+supervisor部署django项目 | 世无常景 只争朝夕</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Chen-zhanqi/Chen-zhanqi.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">世无常景 只争朝夕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Chen-zhanqi.github.io/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://www.xker.com/xkerfiles/allimg/1603/1_160330092349_3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="世无常景 只争朝夕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Nginx+Gunicorn+virtualenv+supervisor部署django项目</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T19:54:18+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DjangoServer-Deploy/" itemprop="url" rel="index">
+                    <span itemprop="name">DjangoServer_Deploy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一-前景简介"><a href="#一-前景简介" class="headerlink" title="一 前景简介"></a>一 前景简介</h3><ul>
+<li><strong>Nginx</strong><br>Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外nginx可以作为反向代理进行负载均衡的实现</li>
+<li><strong>Gunicorn</strong><br>Gunicorn“绿色独角兽”是一个被广泛使用的高性能的Python WSGI UNIX HTTP服务器，移植自Ruby的独角兽（Unicorn ）项目,使用pre-fork worker模式，具有使用非常简单，轻量级的资源消耗，以及高性能等特点<br>Gunicorn 服务器作为wsgi app的容器，能够与各种Web框架兼容（flask，django等）,得益于gevent等技术，使用Gunicorn能够在基本不改变wsgi app代码的前提下，大幅度提高wsgi app的性能</li>
+<li><strong>supervisor</strong><br>supervisor是用Python开发的一个client/server服务，是Linux/Unix系统下的一个进程管理工具。可以很方便的监听、启动、停止、重启一个或多个进程。用supervisor管理的进程，当一个进程意外被杀死，supervisor监听到进程死后，会自动将它重启，很方便的做到进程自动恢复的功能，不再需要自己写shell脚本来控制。</li>
+</ul>
+<h3 id="二-安装gunicorn和其它模块"><a href="#二-安装gunicorn和其它模块" class="headerlink" title="二 安装gunicorn和其它模块"></a>二 安装gunicorn和其它模块</h3><ol>
+<li><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><strong>完成宿主机与容器挂载，映射配置后，在项目容器内执行相关部署操作</strong><br>#python的高性能的WSGI HTTP服务器<br>$ <strong>pip3 install gunicorn</strong><br>#Required for both<br>$ <strong>pip3 install greenlet</strong><br>#For eventlet workers<br>$ <strong>pip3 install eventlet</strong><br>#For gevent workers<br>$ <strong>pip3 install gevent</strong><br>#安装nginx服务器<br>$ <strong>apt-get install -y nginx</strong><br>#安装apache测试命令 不需要的话不用下载<br>$ <strong>apt-get install -y apache2-utils</strong></p>
+</li>
+<li><h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><p><strong>在项目settings.py同级目录下创建gunicorn.conf.py文件</strong><br><strong>加入以下配置代码,注意项目名称与路径的信息</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">from multiprocessing import cpu_count</span><br><span class="line"></span><br><span class="line">bind = &quot;0.0.0.0:8000&quot;</span><br><span class="line">#设置守护进程,将进程交给supervisor管理</span><br><span class="line">daemon = True </span><br><span class="line"></span><br><span class="line"># 并行工作进程数,workers是工作线程数，一般设置成：2*服务器CPU个数 + 1，这样的话，在任何时候都有一半的worker在做IO</span><br><span class="line">workers = 2*cpu_count() + 1</span><br><span class="line"></span><br><span class="line"># 指定每个工作者的线程数</span><br><span class="line">threads = 2</span><br><span class="line"></span><br><span class="line">worker_class = &quot;gevent&quot;</span><br><span class="line"></span><br><span class="line">forworded_allow_ips = &apos;*&apos;</span><br><span class="line"></span><br><span class="line">keepalive = 6</span><br><span class="line"></span><br><span class="line">timeout = 65</span><br><span class="line"></span><br><span class="line">graceful_timeout = 10</span><br><span class="line"></span><br><span class="line"># 设置最大并发量</span><br><span class="line">worker_connections = 65535</span><br><span class="line"></span><br><span class="line"># 设置进程文件目录</span><br><span class="line">pidfile = &apos;/www/DjangoPro/gunicorn.pid&apos;</span><br><span class="line"></span><br><span class="line"># 设置访问日志和错误信息日志路径</span><br><span class="line">errorlog = &apos;/www/DjangoPro/gunicorn.error.log&apos;</span><br><span class="line">accesslog = &apos;/www/DjangoPro/gunicorn.access.log&apos;</span><br><span class="line"></span><br><span class="line"># 设置日志等级 info errer</span><br><span class="line">loglevel = &apos;info&apos;</span><br><span class="line"></span><br><span class="line"># debug : 打印全部的日志(notset等同于debug)</span><br><span class="line"># info : 打印info,warning,error,critical级别的日志</span><br><span class="line"># warning : 打印warning,error,critical级别的日志</span><br><span class="line"># error : 打印error,critical级别的日志</span><br><span class="line"># critical : 打印critical级别</span><br><span class="line"></span><br><span class="line">proc_name = &apos;DjangoPro&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h4><p><strong>输入命令根据配置文件启动项目，注意项目名</strong><br>gunicorn -c DjangoPro/gunicorn.conf.py DjangoPro.wsgi:application</p>
+</li>
+<li><h4 id="查看gunicorn状态"><a href="#查看gunicorn状态" class="headerlink" title="查看gunicorn状态"></a>查看gunicorn状态</h4><p>ps aux | grep gunicorn</p>
+</li>
+<li><h4 id="查看后台所有进程"><a href="#查看后台所有进程" class="headerlink" title="查看后台所有进程"></a>查看后台所有进程</h4><p>ps -ax</p>
+</li>
+<li><h4 id="强制杀死某个进程"><a href="#强制杀死某个进程" class="headerlink" title="强制杀死某个进程"></a>强制杀死某个进程</h4><p>kill -9 id号</p>
+</li>
+<li><h4 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h4><p>ab -n 1000 -c 10 <a href="http://127.0.0.1:8000/json/" target="_blank" rel="noopener">http://127.0.0.1:8000/json/</a><br>#1000表示访问量，10表示并发量，http:…表示进行测试的地址</p>
+</li>
+</ol>
+<h3 id="三-配置nginx"><a href="#三-配置nginx" class="headerlink" title="三 配置nginx"></a>三 配置nginx</h3><p><strong>nginx上面已经下载过，直接通过vi编辑器配置文件</strong></p>
+<ol>
+<li><h4 id="修改nginx-conf"><a href="#修改nginx-conf" class="headerlink" title="修改nginx.conf"></a>修改nginx.conf</h4># <strong>vi /etc/nginx/nginx.conf</strong>  修改为65535<br><img src="/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/01.png" alt=""></li>
+<li><h4 id="新建配置文件"><a href="#新建配置文件" class="headerlink" title="新建配置文件"></a>新建配置文件</h4><p># <strong>vi /etc/nginx/conf.d/djangopro.conf</strong><br><strong>添加以下配置信息,注意项目路径；中文注释在终端中正好去掉</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">upstream app_server &#123;</span><br><span class="line">        server 127.0.0.1:8002;  #与gunicorn配置中bind的地址一致</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;listen       8000;  # 该端口要开放</span><br><span class="line">        server_name  0.0.0.0;  #域名或主机地址</span><br><span class="line">        access_log  /www/MyServer/logs/host.access.log;</span><br><span class="line">        location = /favicon.ico  &#123;</span><br><span class="line">            empty_gif;</span><br><span class="line">            access_log off;</span><br><span class="line">        &#125;</span><br><span class="line">        location /static/ &#123;</span><br><span class="line">            root   /www/MyServer/;</span><br><span class="line">            expires 30d;</span><br><span class="line">            access_log off;</span><br><span class="line">        &#125;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_set_header Host $http_host;</span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            proxy_pass http://app_server;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="测试配置文件"><a href="#测试配置文件" class="headerlink" title="测试配置文件"></a>测试配置文件</h4><p>通过命令 <strong>nginx -t</strong> 检测nginx配置文件是否存在语法错误，以下说明ok<br><img src="/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/02.png" alt=""></p>
+</li>
+<li><h4 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h4><p># <strong>service nginx start</strong> 右侧有ok说明启动成功，下图没截到<br><img src="/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/03.png" alt=""><br><strong>如果nginx启动失败，可能是独角兽在后台运行，先关闭，上面有关闭命令</strong><br><em>注意：如果想通过nginx访问django项目，需要将gunicorn端口改为8002然后重新启动独角兽</em></p>
+</li>
+<li><h4 id="修改nginx默认端口"><a href="#修改nginx默认端口" class="headerlink" title="修改nginx默认端口"></a>修改nginx默认端口</h4><p>#<strong>vi /etc/nginx/sites-enabled/default</strong><br><img src="/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/04.png" alt="图片04"></p>
+</li>
+<li><h4 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h4><p><strong>service nginx restart</strong><br>访问<a href="http://192.168.99.100:81/" target="_blank" rel="noopener">http://192.168.99.100:81/</a><br><img src="/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/05.png" alt="图片05"></p>
+</li>
+</ol>
+<h3 id="四-安装supervisor"><a href="#四-安装supervisor" class="headerlink" title="四 安装supervisor"></a>四 安装supervisor</h3><p># <strong>apt-get install -y supervisor</strong></p>
+<ol>
+<li><h4 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h4><p># <strong>rm /etc/supervisor/supervisord.conf</strong><br># <strong>echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf</strong></p>
+</li>
+<li><h4 id="修改默认配置文件"><a href="#修改默认配置文件" class="headerlink" title="修改默认配置文件"></a>修改默认配置文件</h4><p><strong>/tmp/supervisor.sock -&gt; /var/run/supervisor.sock</strong>  #12行<br><strong>/tmp/supervisord.log -&gt; /var/log/supervisord.log</strong>   #24行<br><strong>/tmp/supervisord.pid -&gt; /var/run/supervisord.pid</strong>   #28行<br><strong>unix:///tmp/supervisor.sock -&gt; unix:///var/run/supervisor.sock</strong>  #48行<br><strong>[include]</strong> 去掉前面的分号  #140行<br><strong>files = relative/directory/*.ini 去掉前面的分号并修改为files = /etc/supervisor/conf.d/*.conf</strong>   #141行0</p>
+</li>
+<li><h4 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h4><p># <strong>chmod -R 777 /var/run<br># chmod -R 777 /var/log</strong></p>
+</li>
+<li><h4 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h4><p>Superviosr通过配置文件来设置被监管的程序，一般配置文件都放置在/etc/supervisor/conf.d路径下面，此处我们创建一个名为djangopro.conf的配置文件<br># <strong>vi /etc/supervisor/conf.d/djangopro.conf</strong>进入添加以下信息,注意项目路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[program:MyServer]</span><br><span class="line">command = gunicorn -c /www/MyServer/MyServer/gunicorn.conf.py MyServer.wsgi:application</span><br><span class="line">user = root</span><br><span class="line">autostart=true ;</span><br><span class="line">autorestart=true ;</span><br><span class="line">startretries=10 ;</span><br><span class="line">redirect_stderr = true</span><br><span class="line">stdout_logfile = /www/MyServer/logs/robot.log</span><br><span class="line">stderr_logfile=/www/MyServer/logs/err.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="启动Supervisor"><a href="#启动Supervisor" class="headerlink" title="启动Supervisor"></a>启动Supervisor</h4><p><strong>关闭supervisor服务，没有启动不用执行</strong><br># <strong>supervisorctl shutdown</strong><br><strong>下面命令需要在项目根目录下执行</strong><br><strong>cd /www/DjangoPro</strong> 进入django项目<br><strong>supervisord -c /etc/supervisor/supervisord.conf</strong> #启动</p>
+</li>
+<li><h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p><strong>ps aux | grep gunicorn</strong> 查看独角兽运行信息<br><strong>ps aux | grep supervisor</strong> 查看supervisor运行信息<br><strong>kill -9 某一个gunicorn进程id</strong> 杀死某个进程<br><strong>ps -ax</strong> 查看所有进程<br><strong>结果；即便强制杀死gunicorn，supervisor依然会自动重启</strong></p>
+</li>
+<li><h4 id="Supervisor其它命令"><a href="#Supervisor其它命令" class="headerlink" title="Supervisor其它命令"></a>Supervisor其它命令</h4><p><strong>supervisorctl start programxxx</strong> 启动某个进程<br><strong>supervisorctl restart programxxx</strong> 重启某个进程<br><strong>supervisorctl stop groupworker</strong>: 重启所有属于名为groupworker这个分组的进程(start,restart同理)<br><strong>supervisorctl stop all</strong> 停止全部进程，注：start、restart、stop都不会载入最新的配置文件。<br><strong>supervisorctl reload</strong> 载入最新的配置文件，停止原有进程并按新的配置启动、管理所有进程。<br><strong>supervisorctl update</strong> 根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/20/thread/" rel="next" title="进程与线程的懵懂岁月">
+                <i class="fa fa-chevron-left"></i> 进程与线程的懵懂岁月
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.xker.com/xkerfiles/allimg/1603/1_160330092349_3.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web导航" target="_blank">Web导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-前景简介"><span class="nav-number">1.</span> <span class="nav-text">一 前景简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装gunicorn和其它模块"><span class="nav-number">2.</span> <span class="nav-text">二 安装gunicorn和其它模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载"><span class="nav-number">2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">创建配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动项目"><span class="nav-number">2.3.</span> <span class="nav-text">启动项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看gunicorn状态"><span class="nav-number">2.4.</span> <span class="nav-text">查看gunicorn状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看后台所有进程"><span class="nav-number">2.5.</span> <span class="nav-text">查看后台所有进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强制杀死某个进程"><span class="nav-number">2.6.</span> <span class="nav-text">强制杀死某个进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试"><span class="nav-number">2.7.</span> <span class="nav-text">性能测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-配置nginx"><span class="nav-number">3.</span> <span class="nav-text">三 配置nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改nginx-conf"><span class="nav-number">3.1.</span> <span class="nav-text">修改nginx.conf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建配置文件"><span class="nav-number">3.2.</span> <span class="nav-text">新建配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试配置文件"><span class="nav-number">3.3.</span> <span class="nav-text">测试配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动nginx"><span class="nav-number">3.4.</span> <span class="nav-text">启动nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改nginx默认端口"><span class="nav-number">3.5.</span> <span class="nav-text">修改nginx默认端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启nginx"><span class="nav-number">3.6.</span> <span class="nav-text">重启nginx</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-安装supervisor"><span class="nav-number">4.</span> <span class="nav-text">四 安装supervisor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生成配置文件"><span class="nav-number">4.1.</span> <span class="nav-text">生成配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改默认配置文件"><span class="nav-number">4.2.</span> <span class="nav-text">修改默认配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改权限"><span class="nav-number">4.3.</span> <span class="nav-text">修改权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加配置文件"><span class="nav-number">4.4.</span> <span class="nav-text">添加配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动Supervisor"><span class="nav-number">4.5.</span> <span class="nav-text">启动Supervisor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">4.6.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Supervisor其它命令"><span class="nav-number">4.7.</span> <span class="nav-text">Supervisor其它命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
