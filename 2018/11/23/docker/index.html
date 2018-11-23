@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据库,scrapy,爬虫," />
+  <meta name="keywords" content="docker,命令," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="在开始使用scrapy框架爬虫的时候,将爬取的数据是使用同步写入数据库;进一步学习,同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库,而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性;这些代码写在pipelines中…在pipelines中可以自定义图片、文件下载保存路径,保存json、excel、sqlite、异步写入m">
-<meta name="keywords" content="数据库,scrapy,爬虫">
+<meta name="description" content="一 docker简介Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗">
+<meta name="keywords" content="docker,命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scrapy中将数据异步写入MYSQL数据库">
-<meta property="og:url" content="http://Chen-zhanqi.github.io/2018/10/11/AsyncToSql/index.html">
+<meta property="og:title" content="Docker简介与命令">
+<meta property="og:url" content="http://Chen-zhanqi.github.io/2018/11/23/docker/index.html">
 <meta property="og:site_name" content="世无常景 只争朝夕">
-<meta property="og:description" content="在开始使用scrapy框架爬虫的时候,将爬取的数据是使用同步写入数据库;进一步学习,同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库,而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性;这些代码写在pipelines中…在pipelines中可以自定义图片、文件下载保存路径,保存json、excel、sqlite、异步写入m">
+<meta property="og:description" content="一 docker简介Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chen-zhanqi.github.io/2018/10/11/AsyncToSql/01.png">
-<meta property="og:updated_time" content="2018-11-02T09:44:40.021Z">
+<meta property="og:updated_time" content="2018-11-23T13:20:53.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scrapy中将数据异步写入MYSQL数据库">
-<meta name="twitter:description" content="在开始使用scrapy框架爬虫的时候,将爬取的数据是使用同步写入数据库;进一步学习,同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库,而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性;这些代码写在pipelines中…在pipelines中可以自定义图片、文件下载保存路径,保存json、excel、sqlite、异步写入m">
-<meta name="twitter:image" content="http://chen-zhanqi.github.io/2018/10/11/AsyncToSql/01.png">
+<meta name="twitter:title" content="Docker简介与命令">
+<meta name="twitter:description" content="一 docker简介Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://Chen-zhanqi.github.io/2018/10/11/AsyncToSql/"/>
+  <link rel="canonical" href="http://Chen-zhanqi.github.io/2018/11/23/docker/"/>
 
 
 
 
 
-  <title>Scrapy中将数据异步写入MYSQL数据库 | 世无常景 只争朝夕</title>
+  <title>Docker简介与命令 | 世无常景 只争朝夕</title>
   
 
 
@@ -246,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Chen-zhanqi.github.io/2018/10/11/AsyncToSql/">
+    <link itemprop="mainEntityOfPage" href="http://Chen-zhanqi.github.io/2018/11/23/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -263,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Scrapy中将数据异步写入MYSQL数据库</h1>
+          <h1 class="post-title" itemprop="name headline">Docker简介与命令</h1>
         
 
         <div class="post-meta">
@@ -278,8 +276,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T15:32:28+08:00">
-                2018-10-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T16:28:12+08:00">
+                2018-11-23
               </time>
             
 
@@ -301,8 +299,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Scrapy框架爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">Scrapy框架爬虫</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -343,23 +341,120 @@
       
 
       
-        <h4 id="在开始使用scrapy框架爬虫的时候-将爬取的数据是使用同步写入数据库-进一步学习-同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库-而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性-这些代码写在pipelines中…"><a href="#在开始使用scrapy框架爬虫的时候-将爬取的数据是使用同步写入数据库-进一步学习-同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库-而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性-这些代码写在pipelines中…" class="headerlink" title="在开始使用scrapy框架爬虫的时候,将爬取的数据是使用同步写入数据库;进一步学习,同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库,而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性;这些代码写在pipelines中…"></a><strong>在开始使用scrapy框架爬虫的时候,将爬取的数据是使用同步写入数据库;进一步学习,同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库,而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性;这些代码写在pipelines中…</strong></h4><p><strong>在pipelines中可以自定义图片、文件下载保存路径,保存json、excel、sqlite、异步写入mysql数据库等</strong></p>
+        <h3 id="一-docker简介"><a href="#一-docker简介" class="headerlink" title="一 docker简介"></a>一 docker简介</h3><p><strong>Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗额外的系统资源，使得应用的性能很高，同时系统的开销尽量小。传统虚拟机方式运行 10 个不同的应用就要起 10 个虚拟机，而Docker 只需要启动 10 个隔离的应用即可。对开发和运维（devop）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运行</strong></p>
 <ul>
-<li>首先在settings中配置连接MYSQL的参数,如下图<br><img src="/2018/10/11/AsyncToSql/01.png" alt="图片失踪"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"># 异步写入数据库</span><br><span class="line"># adbapi 专门用于异步操作数据库的模块</span><br><span class="line">from twisted.enterprise import adbapi</span><br><span class="line"># DictCursor 游标类型</span><br><span class="line">from pymysql.cursors import DictCursor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class TwistedMysqlPipeline(object):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    1.链接数据，获取游标</span><br><span class="line">    2.准备sql语句，执行sql</span><br><span class="line">    3.提交操作，关闭游标，关闭数据库</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    # 在调用TwistedMysqlPipeline时，第一个调用该函数</span><br><span class="line">    @classmethod</span><br><span class="line">    def from_settings(cls, settings):</span><br><span class="line"></span><br><span class="line">        pramars = dict(</span><br><span class="line">            host=settings[&apos;MYSQL_HOST&apos;],</span><br><span class="line">            port=settings[&apos;MYSQL_PORT&apos;],</span><br><span class="line">            user=settings[&apos;MYSQL_USER&apos;],</span><br><span class="line">            password=settings[&apos;MYSQL_PASSWORD&apos;],</span><br><span class="line">            db=settings[&apos;MYSQL_DB&apos;],</span><br><span class="line">            charset=settings[&apos;MYSQL_CHARSET&apos;],</span><br><span class="line">            use_unicode=True,</span><br><span class="line">            cursorclass=DictCursor</span><br><span class="line">        )</span><br><span class="line">        # 连接池</span><br><span class="line">        # 1.使用的第三方操作mysql的包</span><br><span class="line">        # 2.链接mysql需要的参数</span><br><span class="line">        db_pool = adbapi.ConnectionPool(&apos;pymysql&apos;, **pramars)</span><br><span class="line">        # 返回当前类的对象，并且把db_pool作为参数传递到初始化函数中</span><br><span class="line">        return cls(db_pool)</span><br><span class="line"></span><br><span class="line">    def __init__(self, db_pool):</span><br><span class="line">        # 将db_pool赋值给self.db_pool属性，在process_item函数中就可以使用db_pool</span><br><span class="line">        self.db_pool = db_pool</span><br><span class="line"></span><br><span class="line">    def process_item(self, item, spider):</span><br><span class="line"></span><br><span class="line">        # 将写入数据库的操作放入链接池中</span><br><span class="line">        # 参数1.要异步执行的操作</span><br><span class="line">        # 参数2.异步执行操作需要的参数</span><br><span class="line">        result = self.db_pool.runInteraction(self.insert_item, item)</span><br><span class="line"></span><br><span class="line">        # 给执行结果添加错误回调函数</span><br><span class="line">        result.addErrback(self.sql_faild, item)</span><br><span class="line"></span><br><span class="line">        # 交给下一个pipeline继续进行处理</span><br><span class="line">        return item</span><br><span class="line"></span><br><span class="line">    def sql_faild(self, fail, item):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :param fail: 错误原因</span><br><span class="line">        :param item: 执行sql错误的数据</span><br><span class="line">        :return:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        print(fail)</span><br><span class="line">        print(&apos;出现问题的数据&#123;&#125;&apos;.format(item))</span><br><span class="line"></span><br><span class="line">    def insert_item(self, cursor, item):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        操作数据写入的函数</span><br><span class="line">        :param cursor: 游标,自动传入</span><br><span class="line">        :param item: 要写入的数据</span><br><span class="line">        :return:</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        sql = &apos;INSERT INTO ivsky(alt,src)VALUES(%s,%s)&apos;</span><br><span class="line">        cursor.execute(sql,(item[&apos;alt&apos;], item[&apos;src&apos;]))</span><br></pre></td></tr></table></figure>
+<li>更快速的交付和部署</li>
+<li>更高效的虚拟化</li>
+<li>更轻松的迁移和扩展</li>
+<li>更简单的管理</li>
+</ul>
+<ol>
+<li><h4 id="Docker的优点"><a href="#Docker的优点" class="headerlink" title="Docker的优点"></a>Docker的优点</h4></li>
+</ol>
+<ul>
+<li><strong>简化程序</strong><br>Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成</li>
+<li><strong>避免选择恐惧症</strong><br>如果你有选择恐惧症，还是资深患者。Docker 帮你 打包你的纠结！比如 Docker 镜像；Docker 镜像中包含了运行环境和配置，所以 Docker 可以简化部署多种应用实例工作。比如 Web 应用、后台应用、数据库应用、大数据应用比如 Hadoop 集群、消息队列等等都可以打包成一个镜像部署</li>
+<li><strong>节省开支</strong><br>一方面，云计算时代到来，使开发者不必为了追求效果而配置高额的硬件，Docker 改变了高性能必然高价格的思维定势。Docker 与云的结合，让云空间得到更充分的利用。不仅解决了硬件管理的问题，也改变了虚拟化的方式。</li>
+</ul>
+<ol start="2">
+<li><h4 id="Docker的应用场景"><a href="#Docker的应用场景" class="headerlink" title="Docker的应用场景"></a>Docker的应用场景</h4></li>
+</ol>
+<ul>
+<li>Web 应用的自动化打包和发布，实现合作团队开发环境一致</li>
+<li>自动化测试和持续集成、发布</li>
+<li>在服务型环境中部署和调整数据库或其他的后台应用</li>
+<li>从头编译或者扩展现有的OpenShift或Cloud Foundry平台来搭建自己的PaaS环境</li>
+</ul>
+<ol start="3">
+<li><h4 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h4></li>
+</ol>
+<ul>
+<li><p><strong>Docker是CS架构，主要有两个概念</strong><br><strong>Docker daemon</strong>: 运行在宿主机上，Docker守护进程，用户通过Docker client(Docker命令)与Docker daemon交互<br><strong>Docker client</strong>: Docker 命令行工具，是用户使用Docker的主要方式，Docker client与Docker daemon通信并将结果返回给用户，Docker client也可以通过socket或者RESTful api访问远程的Docker daemon</p>
+</li>
+<li><p><strong>Docker的三个主要概念</strong><br><strong>Docker image</strong>：镜像是只读的，镜像中包含有需要运行的文件。镜像用来创建container，一个镜像可以运行多个container；镜像可以通过Dockerfile创建，也可以从Docker hub/registry上下载<br><strong>Docker container</strong>：容器是Docker的运行组件，启动一个镜像就是一个容器，容器是一个隔离环境，多个容器之间不会相互影响，保证容器中的程序运行在一个相对安全的环境中<br><strong>Docker hub/registry</strong>: 共享和管理Docker镜像，用户可以上传或者下载上面的镜像，官方地址为<a href="https://registry.hub.docker.com/，也可以搭建自己私有的Docker" target="_blank" rel="noopener">https://registry.hub.docker.com/，也可以搭建自己私有的Docker</a> registry<br>镜像就相当于打包好的版本，镜像启动之后运行在容器中，仓库就是装存储镜像的地方</p>
 </li>
 </ul>
-<p><strong>大概步骤如下</strong></p>
-<ol>
-<li>在settings中配置Mysql链接需要的参数</li>
-<li>自定义Pipeline，实现from_settings函数</li>
-<li>from twisted.enterprise import adbapi 引入连接池模块</li>
-<li>from pymysql import cursors 引入游标模块</li>
-<li>在from_settings中，准备链接数据库参数，创建db_pool连接池，创建返回当前类的对象，传入db_pool</li>
-<li>实现初始化函数,在初始化函数中,将db_pool赋值self的属性</li>
-<li>实现process_item函数<br> 7.1 query = self.db_pool.runInteraction(执行插入数据操作的函数对象，函数需要参数)，并接受执行返回结果<br> 7.2 query.addErrback(错误回调函数，函数需要参数)，添加执行sql失败回调的函数，在回调函数中对错误数据进一步处理 </li>
-<li>实现插入数据操作的函数，准备sql，执行sql</li>
-<li>实现错误回调函数，在回调函数中对错误数据进一步处理 </li>
+<h3 id="二-常用命令"><a href="#二-常用命令" class="headerlink" title="二 常用命令"></a>二 常用命令</h3><ol>
+<li><h4 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h4></li>
 </ol>
+<ul>
+<li><p><strong>login / logout</strong><br>登陆到Docker Hub<br>docker login -u 用户名 -p 密码<br>登出Docker Hub<br>docker logout</p>
+</li>
+<li><p><strong>pull / push</strong><br><strong>从Docker Hub下载java最新版镜像</strong><br>docker pull java<br><strong>从Docker Hub下载REPOSITORY为java的所有镜像</strong><br>docker pull -a java<br><strong>上传本地镜像myapache:v1到镜像仓库中</strong><br>docker push myapache:v1</p>
+</li>
+</ul>
+<ul>
+<li><strong>search</strong><br>从Docker Hub查找镜像</li>
+</ul>
+<ol start="2">
+<li><h4 id="容器生命周期管理"><a href="#容器生命周期管理" class="headerlink" title="容器生命周期管理"></a>容器生命周期管理</h4></li>
+</ol>
+<ul>
+<li><p><strong>run</strong><br><strong>创建一个新的容器并运行一个命令</strong><br>docker run [参数] Image [命令]</p>
+<pre><code>-i: 以交互模式运行容器，通常与 -t 同时使用
+-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用
+-p: 端口映射，格式为：主机(宿主)端口:容器端口
+--name=&quot;nginx-lb&quot;: 为容器指定一个名称；
+-d: 后台运行容器，不加会进入容器，一般不加
+-m :设置容器使用内存最大值；
+</code></pre><p><strong>使用镜像nginx:latest以交互模式启动一个容器,在容器内执行/bin/bash命令</strong><br>docker run -it nginx:latest /bin/bash<br><strong>目录挂载到主机（宿主机）www中</strong><br>docker run -i -t -d (不加自动进入容器) –name=’lisi’ -p 80:80 -p 81:81 -v /www:/www ubuntu /bin/bash</p>
+</li>
+<li><p><strong>start/stop/restart</strong> 命令<br><strong>启动一个或多个已经被停止的容器</strong><br>docker start<br><strong>停止一个运行中的容器</strong><br>docker stop<br><strong>重启容器</strong><br>docker restart</p>
+</li>
+<li><p>kill命令<br><strong>杀掉一个运行中的容器</strong><br>docker kill</p>
+</li>
+<li><p><strong>pause/unpause</strong> 命令<br><strong>暂停容器中所有的进程</strong><br>docker pause<br><strong>恢复容器中所有的进程</strong><br>docker unpause</p>
+</li>
+<li><p><strong>create</strong> 命令<br><strong>创建一个新的容器但不启动它</strong><br>docker create</p>
+</li>
+<li><p><strong>exec</strong> 命令<br><strong>在运行的容器中执行命令</strong><br>docker exec<br>docker exec -i -t 容器 /bin/bash<br><strong>在一个容器内开多个终端的意思</strong></p>
+</li>
+</ul>
+<ol start="3">
+<li><h4 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h4></li>
+</ol>
+<ul>
+<li><p><strong>ps</strong><br><strong>列出容器</strong><br>docker ps [参数] 容器</p>
+<pre><code>-a :显示所有的容器，包括未运行的
+-l :显示最近创建的容器
+-n :列出最近创建的n个容器
+-q :静默模式，只显示容器编号
+-s :显示总的文件大小
+</code></pre></li>
+<li><p><strong>top</strong><br>查看容器中运行的进程信息，支持 ps 命令参数</p>
+</li>
+<li><p><strong>attach</strong><br>连接到正在运行中的容器</p>
+</li>
+<li><p><strong>events</strong><br>从服务器获取实时事件</p>
+</li>
+<li><p><strong>logs</strong><br>获取容器的日志</p>
+<pre><code>-f :跟踪日志输出
+--since :显示某个开始时间的所有日志
+-t :显示时间戳
+--tail :仅列出最新N条容器日志
+</code></pre></li>
+<li><p><strong>port</strong><br>列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口。</p>
+</li>
+<li><p><strong>commit</strong><br>从容器创建一个新的镜像<br>docker commit -a ‘zhangsan’ -m ‘installed nginx and python3.6’  容器名 docker账号/镜像名</p>
+<pre><code>-a :提交的镜像作者；
+-m :提交时的说明文字
+-p :在commit时，将容器暂停。
+</code></pre></li>
+</ul>
+<ol start="4">
+<li><h4 id="本地镜像管理"><a href="#本地镜像管理" class="headerlink" title="本地镜像管理"></a>本地镜像管理</h4></li>
+</ol>
+<ul>
+<li><p><strong>images</strong><br>列出本地镜像</p>
+<pre><code>-a：列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）
+--digests：显示镜像的摘要信息
+--no-trunc：显示完整的镜像信息
+-q：只显示镜像ID
+</code></pre></li>
+<li><p><strong>info</strong><br>显示 Docker 系统信息，包括镜像和容器数</p>
+</li>
+<li><strong>version</strong><br>显示 Docker 版本信息</li>
+</ul>
 
       
     </div>
@@ -377,11 +472,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据库/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+            <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
           
-            <a href="/tags/scrapy/" rel="tag"><i class="fa fa-tag"></i> scrapy</a>
-          
-            <a href="/tags/爬虫/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
+            <a href="/tags/命令/" rel="tag"><i class="fa fa-tag"></i> 命令</a>
           
         </div>
       
@@ -394,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/30/PyMysql/" rel="next" title="MySQL之(Terminal)创建数据库,通过代码对数据表、数据的基本操作">
-                <i class="fa fa-chevron-left"></i> MySQL之(Terminal)创建数据库,通过代码对数据表、数据的基本操作
+              <a href="/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/" rel="next" title="使用Nginx+Gunicorn+virtualenv+supervisor部署django项目">
+                <i class="fa fa-chevron-left"></i> 使用Nginx+Gunicorn+virtualenv+supervisor部署django项目
               </a>
             
           </div>
@@ -403,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/11/RandomUA/" rel="prev" title="Scrapy框架设置随机请求头">
-                Scrapy框架设置随机请求头 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -560,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#在开始使用scrapy框架爬虫的时候-将爬取的数据是使用同步写入数据库-进一步学习-同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库-而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性-这些代码写在pipelines中…"><span class="nav-number">1.</span> <span class="nav-text">在开始使用scrapy框架爬虫的时候,将爬取的数据是使用同步写入数据库;进一步学习,同步写入速度比较慢，而爬虫速度比较快，有可能导致数据保存不完整，一部分数据没有入库,而异步可以将爬虫和写入数据库操作分开执行，互不影响，所以写入速度比较快，可以保证数据完整性;这些代码写在pipelines中…</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-docker简介"><span class="nav-number">1.</span> <span class="nav-text">一 docker简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker的优点"><span class="nav-number">1.1.</span> <span class="nav-text">Docker的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker的应用场景"><span class="nav-number">1.2.</span> <span class="nav-text">Docker的应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关概念"><span class="nav-number">1.3.</span> <span class="nav-text">相关概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-常用命令"><span class="nav-number">2.</span> <span class="nav-text">二 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#镜像仓库"><span class="nav-number">2.1.</span> <span class="nav-text">镜像仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器生命周期管理"><span class="nav-number">2.2.</span> <span class="nav-text">容器生命周期管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器操作"><span class="nav-number">2.3.</span> <span class="nav-text">容器操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地镜像管理"><span class="nav-number">2.4.</span> <span class="nav-text">本地镜像管理</span></a></li></ol></li></ol></div>
             
 
           </div>
