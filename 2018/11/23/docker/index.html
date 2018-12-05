@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一 docker简介Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗">
+<meta name="description" content="一 docker简介&amp;emsp;&amp;emsp;Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运">
 <meta name="keywords" content="docker,命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker简介与命令">
 <meta property="og:url" content="http://Chen-zhanqi.github.io/2018/11/23/docker/index.html">
 <meta property="og:site_name" content="展展的博客">
-<meta property="og:description" content="一 docker简介Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗">
+<meta property="og:description" content="一 docker简介&amp;emsp;&amp;emsp;Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T02:01:26.000Z">
+<meta property="og:updated_time" content="2018-12-05T12:51:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker简介与命令">
-<meta name="twitter:description" content="一 docker简介Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗">
+<meta name="twitter:description" content="一 docker简介&amp;emsp;&amp;emsp;Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运">
 
 
 
@@ -98,9 +98,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     version: '',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -342,7 +342,7 @@
       
 
       
-        <h3 id="一-docker简介"><a href="#一-docker简介" class="headerlink" title="一 docker简介"></a>一 docker简介</h3><p><strong>Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗额外的系统资源，使得应用的性能很高，同时系统的开销尽量小。传统虚拟机方式运行 10 个不同的应用就要起 10 个虚拟机，而Docker 只需要启动 10 个隔离的应用即可。对开发和运维（devop）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运行</strong></p>
+        <h3 id="一-docker简介"><a href="#一-docker简介" class="headerlink" title="一 docker简介"></a>一 docker简介</h3><p>&emsp;&emsp;<strong>Docker 属于 Linux 容器的一种封装，采用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。它是目前最流行的 Linux 容器解决方案。Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。容器除了运行其中应用外，基本不消耗额外的系统资源，使得应用的性能很高，同时系统的开销尽量小。传统虚拟机方式运行 10 个不同的应用就要起 10 个虚拟机，而Docker 只需要启动 10 个隔离的应用即可。对开发和运维（devop）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运行</strong></p>
 <ul>
 <li>更快速的交付和部署</li>
 <li>更高效的虚拟化</li>
@@ -353,9 +353,9 @@
 <li><h4 id="Docker的优点"><a href="#Docker的优点" class="headerlink" title="Docker的优点"></a>Docker的优点</h4></li>
 </ol>
 <ul>
-<li><strong>简化程序</strong><br>Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成</li>
-<li><strong>避免选择恐惧症</strong><br>如果你有选择恐惧症，还是资深患者。Docker 帮你 打包你的纠结！比如 Docker 镜像；Docker 镜像中包含了运行环境和配置，所以 Docker 可以简化部署多种应用实例工作。比如 Web 应用、后台应用、数据库应用、大数据应用比如 Hadoop 集群、消息队列等等都可以打包成一个镜像部署</li>
-<li><strong>节省开支</strong><br>一方面，云计算时代到来，使开发者不必为了追求效果而配置高额的硬件，Docker 改变了高性能必然高价格的思维定势。Docker 与云的结合，让云空间得到更充分的利用。不仅解决了硬件管理的问题，也改变了虚拟化的方式。</li>
+<li><strong>简化程序</strong><br>&emsp;&emsp;Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成</li>
+<li><strong>避免选择恐惧症</strong><br>&emsp;&emsp;如果你有选择恐惧症，还是资深患者。Docker 帮你 打包你的纠结！比如 Docker 镜像；Docker 镜像中包含了运行环境和配置，所以 Docker 可以简化部署多种应用实例工作。比如 Web 应用、后台应用、数据库应用、大数据应用比如 Hadoop 集群、消息队列等等都可以打包成一个镜像部署</li>
+<li><strong>节省开支</strong><br>&emsp;&emsp;一方面，云计算时代到来，使开发者不必为了追求效果而配置高额的硬件，Docker 改变了高性能必然高价格的思维定势。Docker 与云的结合，让云空间得到更充分的利用。不仅解决了硬件管理的问题，也改变了虚拟化的方式。</li>
 </ul>
 <ol start="2">
 <li><h4 id="Docker的应用场景"><a href="#Docker的应用场景" class="headerlink" title="Docker的应用场景"></a>Docker的应用场景</h4></li>
@@ -370,9 +370,9 @@
 <li><h4 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h4></li>
 </ol>
 <ul>
-<li><p><strong>Docker是CS架构，主要有两个概念</strong><br><strong>Docker daemon</strong>: 运行在宿主机上，Docker守护进程，用户通过Docker client(Docker命令)与Docker daemon交互<br><strong>Docker client</strong>: Docker 命令行工具，是用户使用Docker的主要方式，Docker client与Docker daemon通信并将结果返回给用户，Docker client也可以通过socket或者RESTful api访问远程的Docker daemon</p>
+<li><p><strong>Docker是CS架构，主要有两个概念</strong><br>&emsp;&emsp;<strong>Docker daemon</strong>: 运行在宿主机上，Docker守护进程，用户通过Docker client(Docker命令)与Docker daemon交互<br>&emsp;&emsp;<strong>Docker client</strong>: Docker 命令行工具，是用户使用Docker的主要方式，Docker client与Docker daemon通信并将结果返回给用户，Docker client也可以通过socket或者RESTful api访问远程的Docker daemon</p>
 </li>
-<li><p><strong>Docker的三个主要概念</strong><br><strong>Docker image</strong>：镜像是只读的，镜像中包含有需要运行的文件。镜像用来创建container，一个镜像可以运行多个container；镜像可以通过Dockerfile创建，也可以从Docker hub/registry上下载<br><strong>Docker container</strong>：容器是Docker的运行组件，启动一个镜像就是一个容器，容器是一个隔离环境，多个容器之间不会相互影响，保证容器中的程序运行在一个相对安全的环境中<br><strong>Docker hub/registry</strong>: 共享和管理Docker镜像，用户可以上传或者下载上面的镜像，官方地址为<a href="https://registry.hub.docker.com/，也可以搭建自己私有的Docker" target="_blank" rel="noopener">https://registry.hub.docker.com/，也可以搭建自己私有的Docker</a> registry<br>镜像就相当于打包好的版本，镜像启动之后运行在容器中，仓库就是装存储镜像的地方</p>
+<li><p><strong>Docker的三个主要概念</strong><br>&emsp;&emsp;<strong>Docker image</strong>：镜像是只读的，镜像中包含有需要运行的文件。镜像用来创建container，一个镜像可以运行多个container；镜像可以通过Dockerfile创建，也可以从Docker hub/registry上下载<br>&emsp;&emsp;<strong>Docker container</strong>：容器是Docker的运行组件，启动一个镜像就是一个容器，容器是一个隔离环境，多个容器之间不会相互影响，保证容器中的程序运行在一个相对安全的环境中<br>&emsp;&emsp;<strong>Docker hub/registry</strong>: 共享和管理Docker镜像，用户可以上传或者下载上面的镜像，官方地址为<a href="https://registry.hub.docker.com/，也可以搭建自己私有的Docker" target="_blank" rel="noopener">https://registry.hub.docker.com/，也可以搭建自己私有的Docker</a> registry<br>镜像就相当于打包好的版本，镜像启动之后运行在容器中，仓库就是装存储镜像的地方</p>
 </li>
 </ul>
 <h3 id="二-常用命令"><a href="#二-常用命令" class="headerlink" title="二 常用命令"></a>二 常用命令</h3><ol>
@@ -498,6 +498,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/12/05/Pizzahut/" rel="prev" title="分析&ensp;爬取必胜客全球餐厅信息">
+                分析&ensp;爬取必胜客全球餐厅信息 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -577,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +592,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -599,7 +603,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -718,6 +722,8 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
 
@@ -803,6 +809,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
