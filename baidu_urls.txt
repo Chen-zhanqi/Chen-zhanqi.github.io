@@ -1,0 +1,10 @@
+http://www.chen-zq.top/2018/12/05/Pizzahut/
+http://www.chen-zq.top/2018/11/23/docker/
+http://www.chen-zq.top/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/
+http://www.chen-zq.top/2018/11/06/send-email/
+http://www.chen-zq.top/2018/10/23/common-function/
+http://www.chen-zq.top/2018/10/14/csv/
+http://www.chen-zq.top/2018/10/11/AsyncToSql/
+http://www.chen-zq.top/2018/09/30/PyMysql/
+http://www.chen-zq.top/2018/09/28/scrapy-redis/
+http://www.chen-zq.top/2018/09/27/scrapyd-bushu/
