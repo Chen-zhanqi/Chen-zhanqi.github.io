@@ -1,3 +1,4 @@
+http://www.chen-zq.top/2018/12/09/linuxcmd/
 http://www.chen-zq.top/2018/12/05/Pizzahut/
 http://www.chen-zq.top/2018/11/23/docker/
 http://www.chen-zq.top/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/
@@ -8,3 +9,12 @@ http://www.chen-zq.top/2018/10/11/AsyncToSql/
 http://www.chen-zq.top/2018/09/30/PyMysql/
 http://www.chen-zq.top/2018/09/28/scrapy-redis/
 http://www.chen-zq.top/2018/09/27/scrapyd-bushu/
+http://www.chen-zq.top/2018/07/02/zhihu/
+http://www.chen-zq.top/2018/06/11/RandomUA/
+http://www.chen-zq.top/2017/12/02/语录/
+http://www.chen-zq.top/2017/11/10/scrapy框架安装/
+http://www.chen-zq.top/2017/11/05/Scrapy框架/
+http://www.chen-zq.top/2017/10/14/txt/
+http://www.chen-zq.top/2017/09/29/xpath/
+http://www.chen-zq.top/2017/09/18/python/
+http://www.chen-zq.top/2017/08/14/status/

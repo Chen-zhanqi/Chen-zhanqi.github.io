@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<meta name="baidu-site-verification" content="Q6rubez7WX" />
+
+<meta name="google-site-verification" content="8hwuYhLHEvjMjkqYopPAwN-xbtdhEfLgx0VEghd-iGk" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.jpg?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.jpg?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="命令,linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一&amp;ensp;磁盘管理list命令&amp;emsp;&amp;emsp;就是list的缩写，通过ls 命令不仅可以查看linux文件夹包含的文件，而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等 常用参数搭配 ls -a 列出目录所有文件，包含以.开始的隐藏文件 ls -A 列出除.及..的其它文件 ls -r 反序排列 ls -t 以文件修改时间排序 ls -S 以文件大小排序 ls -h">
+<meta name="keywords" content="命令,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux&amp;ensp;常用命令">
+<meta property="og:url" content="http://www.chen-zq.top/2018/12/09/linuxcmd/index.html">
+<meta property="og:site_name" content="展展的博客">
+<meta property="og:description" content="一&amp;ensp;磁盘管理list命令&amp;emsp;&amp;emsp;就是list的缩写，通过ls 命令不仅可以查看linux文件夹包含的文件，而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等 常用参数搭配 ls -a 列出目录所有文件，包含以.开始的隐藏文件 ls -A 列出除.及..的其它文件 ls -r 反序排列 ls -t 以文件修改时间排序 ls -S 以文件大小排序 ls -h">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.chen-zq.top/2018/12/09/linuxcmd/01.png">
+<meta property="og:image" content="http://www.chen-zq.top/2018/12/09/linuxcmd/02.png">
+<meta property="og:image" content="http://www.chen-zq.top/2018/12/09/linuxcmd/03.png">
+<meta property="og:updated_time" content="2018-12-09T10:58:16.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux&amp;ensp;常用命令">
+<meta name="twitter:description" content="一&amp;ensp;磁盘管理list命令&amp;emsp;&amp;emsp;就是list的缩写，通过ls 命令不仅可以查看linux文件夹包含的文件，而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等 常用参数搭配 ls -a 列出目录所有文件，包含以.开始的隐藏文件 ls -A 列出除.及..的其它文件 ls -r 反序排列 ls -t 以文件修改时间排序 ls -S 以文件大小排序 ls -h">
+<meta name="twitter:image" content="http://www.chen-zq.top/2018/12/09/linuxcmd/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chen-zq.top/2018/12/09/linuxcmd/"/>
+
+
+
+
+
+  <title>Linux&ensp;常用命令 | 展展的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Chen-zhanqi/Chen-zhanqi.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">展展的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chen-zq.top/2018/12/09/linuxcmd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/title.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="展展的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Linux&ensp;常用命令</h2>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T12:59:39+08:00">
+                2018-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/解析-命令/" itemprop="url" rel="index">
+                    <span itemprop="name">解析&命令</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一-ensp-磁盘管理"><a href="#一-ensp-磁盘管理" class="headerlink" title="一&ensp;磁盘管理"></a><p style="color: #f8412c">一&ensp;磁盘管理</p></h4><h5 id="list命令"><a href="#list命令" class="headerlink" title="list命令"></a><p style="color: green">list命令</p></h5><p>&emsp;&emsp;就是list的缩写，通过ls 命令不仅可以查看linux文件夹包含的文件，而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等<br> <strong>常用参数搭配</strong><br> ls -a 列出目录所有文件，包含以.开始的隐藏文件<br> ls -A 列出除.及..的其它文件<br> ls -r 反序排列<br> ls -t 以文件修改时间排序<br> ls -S 以文件大小排序<br> ls -h 以易读大小显示<br> ls -l 除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来<br><strong>实例</strong></p>
+<ul>
+<li>按易读方式按时间反序排序，并显示文件详细信息<br>ls -lhrt</li>
+<li>按大小反序显示文件详细信息<br>ls -lrS<br><em>列出当前目录中所有以“t”开头的目录的详细内容<br>ls -l t</em>  </li>
+<li>列出文件绝对路径（不包含隐藏文件）<br>ls | sed “s:^:`pwd`/:”</li>
+<li>列出文件绝对路径（包含隐藏文件）<br>find $pwd -maxdepth 1 | xargs ls -ld</li>
+</ul>
+<h5 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a><p style="color: green">cd命令</p></h5><p>&emsp;&emsp;Linux cd命令用于切换当前工作目录至 dirName(目录参数)<br>&emsp;&emsp;其中 dirName 表示法可为绝对路径或相对路径。若目录名称省略，则变换至使用者的 home 目录 (也就是刚 login 时所在的目录)<br>&emsp;&emsp;另外，”~” 也表示为 home 目录 的意思，”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录。<br><strong>实例</strong></p>
+<ul>
+<li>跳到 /usr/bin/<br>cd /usr/bin</li>
+<li>跳到自己的 home 目录<br>cd ~</li>
+<li>进入上一次工作路径<br>cd -</li>
+<li>跳到目前目录的上上两层<br>cd ../..</li>
+</ul>
+<h5 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a><p style="color: green">pwd命令</p></h5><p>&emsp;&emsp;pwd命令用于显示工作目录。<br>&emsp;&emsp;执行pwd指令可立刻得知您目前所在的工作目录的绝对路径名称。</p>
+<hr>
+<ul>
+<li>查看当前路径<br>pwd</li>
+<li>查看软链接的实际路径<br>pwd -P</li>
+</ul>
+<h5 id="df命令"><a href="#df命令" class="headerlink" title="df命令"></a><p style="color: green">df命令</p></h5><p>&emsp;&emsp;df命令用于显示目前在Linux系统上的文件系统的磁盘使用情况统计。<br> <strong>常用参数搭配</strong><br> -a, –all&emsp;包含所有的具有 0 Blocks 的文件系统<br>–block-size={SIZE}&emsp;使用 {SIZE} 大小的 Blocks<br>-h, –human-readable&emsp;使用人类可读的格式(预设值是不加这个选项的…)<br>-i, –inodes&emsp;列出 inode 资讯，不列出已使用 block<br>-l, –local&emsp;限制列出的文件结构<br>-m, –megabytes&emsp;就像 –block-size=1048576<br>–no-sync &emsp;取得资讯前不 sync (预设值)<br>-P, –portability &emsp;使用 POSIX 输出格式<br>-t, –type=TYPE &emsp;限制列出文件系统的 TYPE<br>-T, –print-type &emsp;显示文件系统的形式<br>-x, –exclude-type=TYPE &emsp;限制列出文件系统不要显示 TYPE<br>-v (忽略)<br>–help 显示这个帮手并且离开<br>–version 输出版本资讯并且离开</p>
+<h5 id="du命令"><a href="#du命令" class="headerlink" title="du命令"></a><p style="color: green">du命令</p></h5><p>&emsp;&emsp;du命令用于显示目录或文件的大小。<br>&emsp;&emsp;du会显示指定的目录或文件所占用的磁盘空间。<br><strong>常用参数搭配</strong><br>-a或-all &emsp;显示目录中个别文件的大小。<br>-b或-bytes &emsp;显示目录或文件大小时，以byte为单位。<br>-c或–total &emsp;除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。<br>-D或–dereference-args &emsp;显示指定符号连接的源文件大小。<br>-h或–human-readable &emsp;以K，M，G为单位，提高信息的可读性。<br>-H或–si &emsp;与-h参数相同，但是K，M，G是以1000为换算单位。<br>-L&lt;符号连接&gt;或–dereference&lt;符号连接&gt; &emsp;显示选项中所指定符号连接的源文件大小。<br>-s或–summarize &emsp;仅显示总计。<br>-S或–separate-dirs &emsp;显示个别目录的大小时，并不含其子目录的大小。<br>-x或–one-file-xystem &emsp;以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。<br>-X&lt;文件&gt;或–exclude-from=&lt;文件&gt; &emsp;在&lt;文件&gt;指定目录或文件。<br>–exclude=&lt;目录或文件&gt; &emsp;略过指定的目录或文件。<br>–max-depth=&lt;目录层数&gt; &emsp;超过指定层数的目录后，予以忽略。<br>–help &emsp;显示帮助。<br>–version &emsp;显示版本信息。<br><strong>实例</strong></p>
+<ul>
+<li>显示目录或者文件所占空间<br>du</li>
+<li>显示指定文件所占空间<br>du filename</li>
+<li>方便阅读的格式显示test目录所占空间情况<br>du -h test<br><img src="/2018/12/09/linuxcmd/01.png" alt=""></li>
+</ul>
+<h5 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a><p style="color: green">mkdir命令</p></h5><p>&emsp;&emsp;mkdir命令用于建立名称为 dirName 之子目录<br><strong>参数说明</strong><br>-p &emsp;确保目录名称存在，不存在的就建一个。<br><strong>实例</strong></p>
+<ul>
+<li>在工作目录下，建立一个名为 AAA 的子目录 :<br>mkdir AAA</li>
+<li>在工作目录下的 BBB 目录中，建立一个名为 Test 的子目录。 若 BBB 目录原本不存在，则建立一个。（注：本例若不加 -p，且原本 BBB目录不存在，则产生错误。）<br>mkdir &ensp;-p &ensp;BBB/Test</li>
+</ul>
+<h5 id="rmkdir命令"><a href="#rmkdir命令" class="headerlink" title="rmkdir命令"></a><p style="color: green">rmkdir命令</p></h5><p>&emsp;&emsp;rmdir命令删除空的目录。<br><strong>参数说明</strong><br>-p 是当子目录被删除后使它也成为空目录的话，则顺便一并删除。<br><strong>实例</strong></p>
+<ul>
+<li>将工作目录下，名为 AAA 的子目录删除 :<br>rmdir AAA</li>
+<li>在工作目录下的 BBB 目录中，删除名为 Test 的子目录。若 Test 删除后，BBB 目录成为空目录，则 BBB 亦予删除。<br>rmdir &ensp;-p &ensp;BBB/Test</li>
+</ul>
+<h5 id="quotar命令"><a href="#quotar命令" class="headerlink" title="quotar命令"></a><p style="color: green">quotar命令</p></h5><p>&emsp;&emsp;quota命令用于显示磁盘已使用的空间与限制<br><strong>参数说明</strong><br>-g &emsp;列出群组的磁盘空间限制。<br>-q &emsp;简明列表，只列出超过限制的部分。<br>-u &emsp;列出用户的磁盘空间限制。<br>-v &emsp;显示该用户或群组，在所有挂入系统的存储设备的空间限制。<br>-V &emsp;显示版本信息。</p>
+<h5 id="mount命令"><a href="#mount命令" class="headerlink" title="mount命令"></a><p style="color: green">mount命令</p></h5><p>mount命令是经常会使用到的命令，它用于挂载Linux系统外的文件<br><strong>实例</strong></p>
+<ul>
+<li>将 /dev/hda1 挂在 /mnt 之下<br>#&ensp;mount &ensp;/dev/hda1 &ensp;/mnt</li>
+</ul>
+<h5 id="tree命令"><a href="#tree命令" class="headerlink" title="tree命令"></a><p style="color: green">tree命令</p></h5><p>&emsp;&emsp;tree命令用于以树状图列出目录的内容。<br>&emsp;&emsp;执行tree指令，它会列出指定目录下的所有文件，包括子目录里的文件</p>
+<h4 id="二-ensp-文件管理"><a href="#二-ensp-文件管理" class="headerlink" title="二&ensp;文件管理"></a><p style="color: #f8412c">二&ensp;文件管理</p></h4><h5 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a><p style="color: green">rm命令</p></h5><p>&emsp;&emsp;rm命令用于删除一个文件或者目录。<br><strong>参数说明</strong><br>-i &emsp;删除前逐一询问确认。<br>-f &emsp;即使原档案属性设为唯读，亦直接删除，无需逐一确认。<br>-r &emsp;将目录及以下之档案亦逐一删除。<br><strong>实例</strong></p>
+<ul>
+<li>删除文件可以直接使用rm命令，若删除目录则必须配合选项”-r”，例如<br><img src="/2018/12/09/linuxcmd/02.png" alt=""></li>
+<li>删除当前目录下的所有文件及目录，命令行为<br>rm  -r  *</li>
+</ul>
+<h5 id="mv命令"><a href="#mv命令" class="headerlink" title="mv命令"></a><p style="color: green">mv命令</p></h5><p>&emsp;&emsp;移动文件或修改文件名，根据第二参数类型（如目录，则移动文件；如为文件则重命令该文件）。<br>&emsp;&emsp;当第二个参数为目录时，可刚多个文件以空格分隔作为第一参数，移动多个文件到参数2指定的目录中<br><strong>实例</strong></p>
+<ul>
+<li>将文件test.log重命名为test1.txt<br>mv &ensp;test.log &ensp;test1.txt</li>
+<li>将文件log1.txt,log2.txt,log3.txt移动到根的test3目录中<br>mv &ensp;llog1.txt &ensp;log2.txt &ensp;log3.txt &ensp;/test3</li>
+<li>将文件file1改名为file2，如果file2已经存在，则询问是否覆盖<br>mv &ensp;-i &ensp;log1.txt &ensp;log2.txt</li>
+<li>移动当前文件夹下的所有文件到上一级目录<br>mv &ensp;* &ensp;../</li>
+</ul>
+<h5 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a><p style="color: green">cp命令</p></h5><p>&emsp;&emsp;cp命令主要用于复制文件或目录(或将多个源文件复制至目标目录)<br><span style="color: red">注意</span>：命令行复制，如果目标文件已经存在会提示是否覆盖，而在shell脚本中，如果不加-i参数，则不会提示，而是直接覆盖！<br><strong>参数说明</strong><br>-i &ensp;在覆盖目标文件之前给出提示，要求用户确认是否覆盖，回答”y”时目标文件将被覆盖<br>-f &ensp;与-i相反,覆盖已经存在的目标文件而不给出提示。<br>-r &ensp;复制目录及目录内所有项目<br>-a &ensp;复制的文件与原文件时间一样<br><strong>实例</strong></p>
+<ul>
+<li>复制a.txt到test目录下，保持原文件时间,如果原文件存在提示是否覆盖<br>cp &ensp;-ai &ensp;a.txt &ensp;test</li>
+<li>将当前目录”test/“下的所有文件复制到新目录”newtest”下<br>cp &ensp;–r &ensp;test/ &ensp;newtest </li>
+<li>为a.txt建议一个链接（快捷方式）<br>cp &ensp;-s &ensp;a.txt &ensp;link_a.txt</li>
+</ul>
+<h5 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a><p style="color: green">head命令</p></h5><p>&emsp;&emsp;head 用来显示档案的开头至标准输出中，默认head命令打印其相应文件的开头10行<br><strong>常用参数</strong><br>-n &ensp;&lt;行数&gt; 显示的行数（行数为复数表示从最后向前数）<br><strong>实例</strong></p>
+<ul>
+<li>显示1.log文件中前20行<br>head &ensp;1.log &ensp;-n &ensp;20</li>
+<li>显示t.log最后10行<br>head &ensp;-n &ensp;-10 &ensp;t.log</li>
+</ul>
+<h5 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a><p style="color: green">查找命令</p></h5><p>&emsp;&emsp;在linux要查找某个文件，但不知道放在哪里了，可以使用下面的一些命令来搜索：</p>
+<ul>
+<li>which &ensp;查看可执行文件的位置。</li>
+<li>whereis &ensp;查看文件的位置。</li>
+<li>locate  &ensp;配合数据库查看文件位置。</li>
+<li>find   &ensp;实际搜寻硬盘查询文件名称。<br>which是在PATH就是指定的路径中，搜索某个系统命令的位置，并返回第一个搜索结果。使用which命令，就可以看到某个系统命令是否存在，以及执行的到底是哪一个位置的命令。</li>
+</ul>
+<p><strong>常用参数</strong><br>-n &ensp;指定文件名长度，指定的长度必须大于或等于所有文件中最长的文件名。<br><strong>实例</strong></p>
+<ul>
+<li><p>使用指令”which”查看指令”bash”的绝对路径，输入如下命令<br>which &emsp;bash<br>上面的指令执行后，输出信息如下所示:<br><img src="/2018/12/09/linuxcmd/03.png" alt=""></p>
+</li>
+<li><p>查看ls命令是否存在，执行哪个<br>which ls</p>
+</li>
+<li>查看which<br>which which</li>
+<li>查看cd<br>which cd &ensp;（显示不存在，因为cd是内建命令，而which查找显示是PATH中的命令）</li>
+<li>查看当前PATH配置<br>echo $PATH;&ensp;或使用env查看所有环境变量及对应值</li>
+</ul>
+<h5 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a><p style="color: green">chmod命令</p></h5><p>&emsp;&emsp;Linux/Unix 的文件调用权限分为三级 : 文件拥有者、群组、其他。利用 chmod 可以藉以控制文件如何被他人所调用<br><strong>参数说明</strong></p>
+<ul>
+<li>u &ensp;表示该文件的拥有者，&ensp;g &ensp;表示与该文件的拥有者属于同一个群体(group)者，&ensp;o &ensp;表示其他以外的人，&ensp;a &ensp;表示这三者皆是。</li>
+<li>+ &ensp;表示增加权限、&ensp;- &ensp;表示取消权限、&ensp;= &ensp;表示唯一设定权限。</li>
+<li>r &ensp;表示可读取，w &ensp;表示可写入，x &ensp;表示可执行，X &ensp;表示只有当该文件是个子目录或者该文件已经被设定过为可执行。<br>-c &ensp;若该文件权限确实已经更改，才显示其更改动作<br>-f &ensp;若该文件权限无法被更改也不要显示错误讯息<br>-v &ensp;显示权限变更的详细资料<br>-R &ensp;对目前目录下的所有文件与子目录进行相同的权限变更(即以递回的方式逐个变更)<br>–help &ensp;显示辅助说明<br>–version &ensp;显示版本</li>
+</ul>
+<p><strong>实例</strong></p>
+<ul>
+<li>将文件 file1.txt 设为所有人皆可读取<br>chmod a+r file1.txt</li>
+<li>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入<br>chmod ug+w,o-w file1.txt file2.txt</li>
+<li>将 ex1.py 设定为只有该文件拥有者可以执行<br>chmod u+x ex1.py</li>
+<li>将目前目录下的所有文件与子目录皆设为任何人可读取<br>chmod -R a+r *</li>
+</ul>
+<p><strong>此外chmod也可以用数字来表示权限如 :</strong><br>语法为：<br>chmod abc file<br>其中a,b,c各为一个数字，分别表示User、Group、及Other的权限。<br>r=4，w=2，x=1<br>若要rwx属性则4+2+1=7；<br>若要rw-属性则4+2=6；<br>若要r-x属性则4+1=5。<br>chmod a=rwx file &ensp;等于 &ensp;chmod 777 file<br>chmod ug=rwx,o=x file&ensp;等于&ensp;chmod 771 file</p>
+<h4 id="二-ensp-系统管理"><a href="#二-ensp-系统管理" class="headerlink" title="二&ensp;系统管理"></a><p style="color: #f8412c">二&ensp;系统管理</p></h4><h5 id="reboot命令"><a href="#reboot命令" class="headerlink" title="reboot命令"></a><p style="color: green">reboot命令</p></h5><p>&ensp;&emsp;reboot命令用于用来重新启动计算机</p>
+<h5 id="shutdown命令"><a href="#shutdown命令" class="headerlink" title="shutdown命令"></a><p style="color: green">shutdown命令</p></h5><p>&ensp;&emsp;shutdown命令可以用来进行关机程序，并且在关机以前传送讯息给所有使用者正在执行的程序，shutdown 也可以用来重开机<br><strong>参数说明</strong><br>-r &ensp;关机后重新开机<br>-h &ensp;关机后停机<br>-n &ensp;不采用正常程序来关机，用强迫的方式杀掉所有执行中的程序后自行关机<br>-c &ensp;取消目前已经进行中的关机动作<br>-f &ensp;关机时，不做 fcsk 动作(检查 Linux 档系统)<br>-F &ensp;关机时，强迫进行 fsck 动作<br>time &ensp;设定关机的时间<br>message &ensp;传送给所有使用者的警告讯息<br><strong>实例</strong></p>
+<ul>
+<li>立即关机<br>shutdown -h now</li>
+<li>指定5分钟后关机<br>shutdown +5 “System will shutdown after 5 minutes” //5分钟够关机并显示警告信息</li>
+</ul>
+<h5 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a><p style="color: green">ps命令</p></h5><p>&ensp;&emsp;ps命令用于查看系统中的进程状态，格式为“ps [参数]”<br><strong>参数说明</strong><br>-a &ensp;显示所有进程<br>-u &ensp; 用户以及其他详细信息<br>-x &ensp; 显示没有控制终端的进程<br>在Linux系统中，有5种常见的进程状态，分别为运行、中断、不可中断、僵死与停止，其各自含义如下所示。<br>R（运行）&ensp;进程正在运行或在运行队列中等待。<br>S（中断）&ensp;进程处于休眠中，当某个条件形成后或者接收到信号时，则脱离该   状态。<br>D（不可中断）&ensp;进程不响应系统异步信号，即便用kill命令也不能将其中断。<br>Z（僵死）&ensp;进程已经终止，但进程描述符依然存在, 直到父进程调用wait4()系统函数后将进程释放。<br>T（停止）&ensp;进程收到停止信号后停止运行。</p>
+<h5 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a><p style="color: green">kill命令</p></h5><p>kill命令用于删除执行中的程序或工作。<br>kill可将指定的信息送至程序。预设的信息为SIGTERM(15)，可将指定程序终止。若仍无法终止该程序，可使用SIGKILL(9)信息尝试强制删除程序。程序或工作的编号可利用ps指令或jobs指令查看。<br><strong>实例</strong></p>
+<ul>
+<li>杀死进程<br>kill 12345</li>
+<li>强制杀死进程<br>kill -KILL 123456</li>
+<li>彻底杀死进程<br>kill -9 123456</li>
+</ul>
+<h5 id="ifconfig命令"><a href="#ifconfig命令" class="headerlink" title="ifconfig命令"></a><p style="color: green">ifconfig命令</p></h5><p>&ensp;&emsp;ifconfig命令用于获取网卡配置与网络状态等信息，</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/命令/" rel="tag"><i class="fa fa-tag"></i> 命令</a>
+          
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/05/Pizzahut/" rel="next" title="分析&ensp;爬取必胜客全球餐厅信息">
+                <i class="fa fa-chevron-left"></i> 分析&ensp;爬取必胜客全球餐厅信息
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/title.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chen-zhanqi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:czq181020@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web导航" target="_blank">Web导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-ensp-磁盘管理"><span class="nav-number">1.</span> <span class="nav-text">一 磁盘管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#list命令"><span class="nav-number">1.1.</span> <span class="nav-text">list命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cd命令"><span class="nav-number">1.2.</span> <span class="nav-text">cd命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pwd命令"><span class="nav-number">1.3.</span> <span class="nav-text">pwd命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#df命令"><span class="nav-number">1.4.</span> <span class="nav-text">df命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#du命令"><span class="nav-number">1.5.</span> <span class="nav-text">du命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mkdir命令"><span class="nav-number">1.6.</span> <span class="nav-text">mkdir命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rmkdir命令"><span class="nav-number">1.7.</span> <span class="nav-text">rmkdir命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#quotar命令"><span class="nav-number">1.8.</span> <span class="nav-text">quotar命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mount命令"><span class="nav-number">1.9.</span> <span class="nav-text">mount命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tree命令"><span class="nav-number">1.10.</span> <span class="nav-text">tree命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-ensp-文件管理"><span class="nav-number">2.</span> <span class="nav-text">二 文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#rm命令"><span class="nav-number">2.1.</span> <span class="nav-text">rm命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mv命令"><span class="nav-number">2.2.</span> <span class="nav-text">mv命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cp命令"><span class="nav-number">2.3.</span> <span class="nav-text">cp命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#head命令"><span class="nav-number">2.4.</span> <span class="nav-text">head命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查找命令"><span class="nav-number">2.5.</span> <span class="nav-text">查找命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#chmod命令"><span class="nav-number">2.6.</span> <span class="nav-text">chmod命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-ensp-系统管理"><span class="nav-number">3.</span> <span class="nav-text">二 系统管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#reboot命令"><span class="nav-number">3.1.</span> <span class="nav-text">reboot命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#shutdown命令"><span class="nav-number">3.2.</span> <span class="nav-text">shutdown命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ps命令"><span class="nav-number">3.3.</span> <span class="nav-text">ps命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#kill命令"><span class="nav-number">3.4.</span> <span class="nav-text">kill命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ifconfig命令"><span class="nav-number">3.5.</span> <span class="nav-text">ifconfig命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 点击红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

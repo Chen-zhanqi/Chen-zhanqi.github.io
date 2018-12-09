@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://www.chen-zq.top/2018/12/05/Pizzahut/05.png">
 <meta property="og:image" content="http://www.chen-zq.top/2018/12/05/Pizzahut/06.png">
 <meta property="og:image" content="http://www.chen-zq.top/2018/12/05/Pizzahut/07.png">
-<meta property="og:updated_time" content="2018-12-05T14:28:26.000Z">
+<meta property="og:updated_time" content="2018-12-09T05:07:08.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分析&amp;ensp;爬取必胜客全球餐厅信息">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp; 爬过很多网站,最让猿头疼的是通过js动态加载网页数据,如果不熟悉前端js代码,对新手来说是道难题,当然,有些网站也可以通过抓包来实现。今天,浅谈分析通过js代码找到数据请求接口 一&amp;ensp;爬取目标&amp;emsp;&amp;emsp;要爬取的目标是必胜客中国。打开必胜客中国首页，进入“餐厅查询”页面。&amp;emsp;&amp;emsp;要爬取的数据内容有城市、餐厅名字、餐厅地址以及餐厅联系电话">
@@ -349,7 +349,7 @@
       
         <p>&emsp;&emsp; <strong>爬过很多网站,最让猿头疼的是通过js动态加载网页数据,如果不熟悉前端js代码,对新手来说是道难题,当然,有些网站也可以通过抓包来实现。今天,浅谈分析通过js代码找到数据请求接口</strong></p>
 <h4 id="一-ensp-爬取目标"><a href="#一-ensp-爬取目标" class="headerlink" title="一&ensp;爬取目标"></a>一&ensp;爬取目标</h4><p>&emsp;&emsp;要爬取的目标是<a href="http://www.pizzahut.com.cn/StoreList" target="_blank" rel="noopener">必胜客中国</a>。打开必胜客中国首页，进入“餐厅查询”页面。<br><br><br><img src="/2018/12/05/Pizzahut/01.png" alt="img"><br>&emsp;&emsp;要爬取的数据内容有城市、餐厅名字、餐厅地址以及餐厅联系电话。因为我看到页面中有地图，所以页面一定有餐厅地址的经纬度。因此，餐厅的经纬度也是需要爬取的数据。<br>&emsp;&emsp;至于全国有必胜客餐厅的城市列表，可以通过页面的“切换城市”获取。</p>
-<h4 id="二-ensp-分析页面"><a href="#二-ensp-分析页面" class="headerlink" title="二&ensp;分析页面"></a>二&ensp;分析页面</h4><p>&emsp;&emsp;在编写爬虫程序之前，建议都是先对页面进行简单分析，然后指定爬取思路。而且对页面结构进行分析往往会有一些意想不到的收获。<br>&emsp;&emsp;首先，使用浏览器的开发者工具对页面结构进行简单分析。这里强烈推荐使用Chrome浏览器。亲测。<br><br><br><img src="/2018/12/05/Pizzahut/02.png" alt=""><br>&emsp;&emsp;我们在 StoreList 页面中能找到我们所需的数据。这个能确定数据提取的 Xpath 语法。<br>&emsp;&emsp;StoreList 页面的 Response 内容比较长。先不着急关闭页面，往下看看，找找看是否有其他可利用的内容。最后，找到调用获取餐厅列表信息的 JavaScript 函数代码。<br><br><br><img src="/2018/12/05/Pizzahut/03.png" alt=""><br>&emsp;&emsp;接着搜索下GetStoreList函数，看看浏览器如何获取餐厅列表信息的。<br><br><br><img src="/2018/12/05/Pizzahut/04.png" alt=""><br>&emsp;&emsp;从代码中，我们可以了解到页面使用 Ajax 方式来获取数据。页面以 POST 方式请求地址\<a href="http://www.pizzahut.com.cn/StoreList/Index。同时，请求还携带参数" target="_blank" rel="noopener">http://www.pizzahut.com.cn/StoreList/Index。同时，请求还携带参数</a> pageIndex 和 pageSize。</p>
+<h4 id="二-ensp-分析页面"><a href="#二-ensp-分析页面" class="headerlink" title="二&ensp;分析页面"></a>二&ensp;分析页面</h4><p>&emsp;&emsp;在编写爬虫程序之前，建议都是先对页面进行简单分析，然后指定爬取思路。而且对页面结构进行分析往往会有一些意想不到的收获。<br>&emsp;&emsp;首先，使用浏览器的开发者工具对页面结构进行简单分析。这里强烈推荐使用Chrome浏览器。亲测。<br><br><br><img src="/2018/12/05/Pizzahut/02.png" alt=""><br>&emsp;&emsp;我们在 StoreList 页面中能找到我们所需的数据。这个能确定数据提取的 Xpath 语法。<br>&emsp;&emsp;StoreList 页面的 Response 内容比较长。先不着急关闭页面，往下看看，找找看是否有其他可利用的内容。最后，找到调用获取餐厅列表信息的 JavaScript 函数代码。<br><br><br><img src="/2018/12/05/Pizzahut/03.png" alt=""><br>&emsp;&emsp;接着搜索下GetStoreList函数，看看浏览器如何获取餐厅列表信息的。<br><br><br><img src="/2018/12/05/Pizzahut/04.png" alt=""><br>&emsp;&emsp;从代码中，我们可以了解到页面使用 Ajax 方式来获取数据。页面以 POST 方式请求地址&ensp;<a href="http://www.pizzahut.com.cn/StoreList/Index。同时，请求还携带参数" target="_blank" rel="noopener">http://www.pizzahut.com.cn/StoreList/Index。同时，请求还携带参数</a> pageIndex 和 pageSize。</p>
 <h4 id="三-ensp-爬取思路"><a href="#三-ensp-爬取思路" class="headerlink" title="三&ensp;爬取思路"></a>三&ensp;爬取思路</h4><p>&emsp;&emsp;经过一番页面结构分析之后，来指定爬取思路。首先，先获取城市信息。然后将其作为参数，构建 HTTP 请求访问必胜客服务器来获取当前城市中所有餐厅数据。<br>&emsp;&emsp;为了方便数据爬取，我将所有城市全部写入到 cities.txt 中。等要爬取数据时，我们再从文件中读取城市信息。<br>&emsp;&emsp;爬取思路看起来没有错，但是还是有个难题没有搞定。每次打开必胜客的官网，页面每次都会自动定位到当前所在的城市。如果无法破解城市定位问题，那么只能抓取一个城市数据。<br>&emsp;&emsp;于是，再次浏览首页，看看能不能找到一些可用的信息。最终，发现页面的 cookies 中有个 iplocation 字段。我将其进行 Url 解码，得到 深圳|0|0 这样的信息。<br><br><br><img src="/2018/12/05/Pizzahut/05.png" alt=""><br><img src="/2018/12/05/Pizzahut/06.png" alt=""><br>&emsp;&emsp;看到这信息，一定会有点思路。原来必胜客网站根据我们的 IP 地址来设置初始城市信息。如果能伪造出 iplocation 字段信息，那就可以随便修改城市了</p>
 <h4 id="四-ensp-代码实现"><a href="#四-ensp-代码实现" class="headerlink" title="四&ensp;代码实现"></a>四&ensp;代码实现</h4><p>&emsp;&emsp;第一步是从文件中读取城市信息,放进一个列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 全国有必胜客餐厅的城市, 我将城市放到文件中, 一共 380 个城市</span><br><span class="line">cities = []</span><br><span class="line"></span><br><span class="line">def get_cities():</span><br><span class="line">    &quot;&quot;&quot; 从文件中获取城市 &quot;&quot;&quot;</span><br><span class="line">    file_name = &apos;cities.txt&apos;</span><br><span class="line">    with open(file_name, &apos;r&apos;, encoding=&apos;UTF-8-sig&apos;) as file:</span><br><span class="line">        for line in file:</span><br><span class="line">            city = line.replace(&apos;\n&apos;, &apos;&apos;)</span><br><span class="line">            cities.append(city)</span><br></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;第二步是依次遍历 cities 列表，将每个城市作为参数，构造 Cookies 的 iplocation 字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">count = 1</span><br><span class="line">results = &#123;&#125;</span><br><span class="line"># 依次遍历所有城市的餐厅,调用爬虫函数,并传递城市参数</span><br><span class="line">for city in cities:</span><br><span class="line">    restaurants = get_stores(city, count)</span><br><span class="line">    results[city] = restaurants</span><br><span class="line">    count += 1</span><br><span class="line">    time.sleep(2)</span><br></pre></td></tr></table></figure></p>
@@ -397,6 +397,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/09/linuxcmd/" rel="prev" title="Linux&ensp;常用命令">
+                Linux&ensp;常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -499,7 +503,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.chen-zq.top/2018/12/09/linuxcmd/</loc>
+    <lastmod>2018-12-09T10:58:16.627Z</lastmod>
+  </url>  <url>
     <loc>http://www.chen-zq.top/2018/12/05/Pizzahut/</loc>
-    <lastmod>2018-12-05T14:28:26.000Z</lastmod>
+    <lastmod>2018-12-09T05:07:08.923Z</lastmod>
   </url>  <url>
     <loc>http://www.chen-zq.top/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/</loc>
     <lastmod>2018-12-05T12:54:18.000Z</lastmod>
@@ -33,9 +36,6 @@
   </url>  <url>
     <loc>http://www.chen-zq.top/2017/08/14/status/</loc>
     <lastmod>2018-12-02T02:42:36.000Z</lastmod>
-  </url>  <url>
-    <loc>http://www.chen-zq.top/2017/11/20/thread/</loc>
-    <lastmod>2018-12-02T02:41:58.000Z</lastmod>
   </url>  <url>
     <loc>http://www.chen-zq.top/2017/10/14/txt/</loc>
     <lastmod>2018-12-02T02:41:42.000Z</lastmod>
