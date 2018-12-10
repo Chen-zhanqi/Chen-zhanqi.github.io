@@ -223,11 +223,11 @@
       <category term="框架&amp;Spider" scheme="http://www.chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
-      <category term="爬虫" scheme="http://www.chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="scrapy" scheme="http://www.chen-zq.top/tags/scrapy/"/>
     
       <category term="数据库" scheme="http://www.chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="爬虫" scheme="http://www.chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -277,9 +277,9 @@
       <category term="项目&amp;部署" scheme="http://www.chen-zq.top/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
     
     
-      <category term="爬虫" scheme="http://www.chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="scrapy" scheme="http://www.chen-zq.top/tags/scrapy/"/>
+    
+      <category term="爬虫" scheme="http://www.chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="部署" scheme="http://www.chen-zq.top/tags/%E9%83%A8%E7%BD%B2/"/>
     
