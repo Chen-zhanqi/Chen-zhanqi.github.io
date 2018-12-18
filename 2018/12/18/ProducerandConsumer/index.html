@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="数据解析," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -82,24 +82,19 @@
 
 
 
-<meta name="description" content="XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件… 一.常见数据类型 用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:   放在HTML里. 直接放">
-<meta name="keywords" content="数据解析">
+<meta name="description" content="一&amp;ensp;什么是生产者消费者模式&amp;emsp;&amp;emsp;在软件开发的过程中，经常碰到这样的场景：&amp;emsp;&amp;emsp;某些模块负责生产数据，这些数据由其他模块来负责处理（此处的模块可能是：函数、线程、进程等）。产生数据的模块称为生产者，而处理数据的模块称为消费者。在生产者与消费者之间的缓冲区称之为仓库。生产者负责往仓库运输商品，而消费者负责从仓库里取出商品，这就构成了生产者消费者模式。结构图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xpath语法与LXML库的基本使用">
-<meta property="og:url" content="http://chen-zq.top/2017/09/29/xpath/index.html">
+<meta property="og:title" content="生产者与消费者模式">
+<meta property="og:url" content="http://chen-zq.top/2018/12/18/ProducerandConsumer/index.html">
 <meta property="og:site_name" content="展展的博客">
-<meta property="og:description" content="XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件… 一.常见数据类型 用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:   放在HTML里. 直接放">
+<meta property="og:description" content="一&amp;ensp;什么是生产者消费者模式&amp;emsp;&amp;emsp;在软件开发的过程中，经常碰到这样的场景：&amp;emsp;&amp;emsp;某些模块负责生产数据，这些数据由其他模块来负责处理（此处的模块可能是：函数、线程、进程等）。产生数据的模块称为生产者，而处理数据的模块称为消费者。在生产者与消费者之间的缓冲区称之为仓库。生产者负责往仓库运输商品，而消费者负责从仓库里取出商品，这就构成了生产者消费者模式。结构图">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chen-zq.top/2017/09/29/xpath/01.png">
-<meta property="og:image" content="http://chen-zq.top/2017/09/29/xpath/02.png">
-<meta property="og:image" content="http://chen-zq.top/2017/09/29/xpath/03.png">
-<meta property="og:image" content="http://chen-zq.top/2017/09/29/xpath/06.png">
-<meta property="og:image" content="http://chen-zq.top/2017/09/29/xpath/07.png">
-<meta property="og:updated_time" content="2018-12-02T02:41:34.000Z">
+<meta property="og:image" content="http://chen-zq.top/2018/12/18/ProducerandConsumer/01.png">
+<meta property="og:updated_time" content="2018-12-18T14:50:34.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xpath语法与LXML库的基本使用">
-<meta name="twitter:description" content="XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件… 一.常见数据类型 用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:   放在HTML里. 直接放">
-<meta name="twitter:image" content="http://chen-zq.top/2017/09/29/xpath/01.png">
+<meta name="twitter:title" content="生产者与消费者模式">
+<meta name="twitter:description" content="一&amp;ensp;什么是生产者消费者模式&amp;emsp;&amp;emsp;在软件开发的过程中，经常碰到这样的场景：&amp;emsp;&amp;emsp;某些模块负责生产数据，这些数据由其他模块来负责处理（此处的模块可能是：函数、线程、进程等）。产生数据的模块称为生产者，而处理数据的模块称为消费者。在生产者与消费者之间的缓冲区称之为仓库。生产者负责往仓库运输商品，而消费者负责从仓库里取出商品，这就构成了生产者消费者模式。结构图">
+<meta name="twitter:image" content="http://chen-zq.top/2018/12/18/ProducerandConsumer/01.png">
 
 
 
@@ -129,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://chen-zq.top/2017/09/29/xpath/"/>
+  <link rel="canonical" href="http://chen-zq.top/2018/12/18/ProducerandConsumer/"/>
 
 
 
 
 
-  <title>xpath语法与LXML库的基本使用 | 展展的博客</title>
+  <title>生产者与消费者模式 | 展展的博客</title>
   
 
 
@@ -253,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chen-zq.top/2017/09/29/xpath/">
+    <link itemprop="mainEntityOfPage" href="http://chen-zq.top/2018/12/18/ProducerandConsumer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -270,11 +265,15 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">xpath语法与LXML库的基本使用</h2>
+          <h2 class="post-title" itemprop="name headline">生产者与消费者模式</h2>
         
 
         <div class="post-meta">
 
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>置顶</font>
+            <span class="post-meta-divider">|</span>
           
 
           <span class="post-time">
@@ -285,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T20:03:43+08:00">
-                2017-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T22:31:09+08:00">
+                2018-12-18
               </time>
             
 
@@ -308,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/解析-命令/" itemprop="url" rel="index">
-                    <span itemprop="name">解析&命令</span>
+                  <a href="/categories/队列-架构/" itemprop="url" rel="index">
+                    <span itemprop="name">队列&架构</span>
                   </a>
                 </span>
 
@@ -345,46 +344,27 @@
       
 
       
-        <p><strong>XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件…</strong></p>
-<h3 id="一-常见数据类型"><a href="#一-常见数据类型" class="headerlink" title="一.常见数据类型"></a>一.常见数据类型</h3><ul>
-<li>用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:</li>
-</ul>
+        <h4 id="一-ensp-什么是生产者消费者模式"><a href="#一-ensp-什么是生产者消费者模式" class="headerlink" title="一&ensp;什么是生产者消费者模式"></a>一&ensp;什么是生产者消费者模式</h4><p>&emsp;&emsp;在软件开发的过程中，经常碰到这样的场景：<br>&emsp;&emsp;某些模块负责生产数据，这些数据由其他模块来负责处理（此处的模块可能是：函数、线程、进程等）。产生数据的模块称为生产者，而处理数据的模块称为消费者。在生产者与消费者之间的缓冲区称之为仓库。生产者负责往仓库运输商品，而消费者负责从仓库里取出商品，这就构成了生产者消费者模式。<br><strong>结构图如下：</strong><br><img src="/2018/12/18/ProducerandConsumer/01.png" alt=""><br>为了大家容易理解，我们举一个寄信的例子。假设你要寄一封信，大致过程如下：</p>
 <ol>
-<li>放在HTML里.</li>
-<li>直接放在javascript里.</li>
-<li>放在JSON里.</li>
-<li>放在XML里.</li>
+<li>你把信写好——相当于生产者生产数据</li>
+<li>你把信放入邮箱——相当于生产者把数据放入缓冲区</li>
+<li>邮递员把信从邮箱取出，做相应处理——相当于消费者把数据取出缓冲区，处理数据</li>
 </ol>
-<ul>
-<li>常用来解析这些数据的方式有re/正则表达式,XPath定位,BeautifulSoup定位,json等,本文记录xpath语法的基本使用</li>
-</ul>
-<h3 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h3><ul>
-<li><strong>使用xpath语法前需要安装第三方库LXML</strong><br>lxml第三方的HTML解析库,Xpath全称是XML Path Language，也就是XML路径语言,它是一门在XML文档中查找信息的语言,它最初是用来搜寻XML文档的。但是它同样也适用于HTML文档的搜索,xpath是通过路径表达式在HTML中选择节点</li>
-<li>使用命令行工具<strong>pip3 install lxml</strong>安装lxml第三方库<br><img src="/2017/09/29/xpath/01.png" alt="图片吃饭去了"><br><img src="/2017/09/29/xpath/02.png" alt="图片吃饭去了"></li>
-</ul>
-<h3 id="三-语法使用"><a href="#三-语法使用" class="headerlink" title="三.语法使用"></a>三.语法使用</h3><ul>
-<li>解析html源码字符串。使用“lxml.etree.HTML( )”进行解析<br><img src="/2017/09/29/xpath/03.png" alt="图片吃饭去了"></li>
-<li><strong>选取节点,下面是最常用的路径表达式</strong><br><img src="/2017/09/29/xpath/06.png" alt="图片吃饭去了"><br><img src="/2017/09/29/xpath/07.png" alt="图片吃饭去了"></li>
-<li>tostring()函数是将一个element tree对象转化为html字符串</li>
-<li>fromstring()函数是将一个字符串转化为一个element tree对象</li>
-<li>text()只能获取当前标签的文本内容，无法获取子标签的文本内容</li>
-<li>//text()可以将标签及子标签的文本内容全部输出，包含标签之间的换行符</li>
-<li>contains(@class, “hao123”)：查找class属性值中包含hao123的标签，一般用于class有多个值的情况</li>
-<li><p><strong>以下面xml文档为例</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">html_code=</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">            	&lt;a href=&quot;https://www.baidu.com&quot; class=&quot;first_a&quot;&gt;百度一下&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">            	&lt;a href=&quot;https://mail.qq.com&quot; id=&quot;second_a&quot;&gt;QQ邮箱&lt;/a&gt;</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">            	&lt;a href=&quot;https://www.taobao.com&quot;&gt;淘宝网&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">                &lt;a href=&quot;https://pypi.python.org&quot; class=&quot;first_a&quot;&gt;Python官网&lt;/a&gt;</span><br><span class="line">                &lt;a href=&quot;https://pypi.python.org&quot; class=&quot;second_a&quot;&gt;Python&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;p class=&quot;one&quot;&gt;first_p_tag&lt;/p&gt;</span><br><span class="line">        &lt;p id=&quot;second&quot;&gt;second_p_tag&lt;/p&gt;</span><br><span class="line">        &lt;div class=&quot;one&quot;&gt;</span><br><span class="line">            &lt;p class=&quot;first second third&quot;&gt;11111111&lt;/p&gt;</span><br><span class="line">            &lt;p class=&quot;hao123&quot;&gt;hao123.com&lt;/p&gt;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;我是神&lt;span&gt;zhiyou&lt;/span&gt;&lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">    &lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>查找</strong></li>
-</ul>
+<h4 id="二-ensp-生产者消费者模式的优点"><a href="#二-ensp-生产者消费者模式的优点" class="headerlink" title="二 &ensp;生产者消费者模式的优点"></a>二 &ensp;生产者消费者模式的优点</h4><h5 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h5><p>&emsp;&emsp;假设生产者和消费者分别是两个线程。如果让生产者直接调用消费者的某个方法，那么生产者对于消费者就会产生依赖（也就是耦合）。如果未来消费者的代码发生变化，可能会影响到生产者的代码。而如果两者都依赖于某个缓冲区，两者之间不直接依赖，耦合也就相应降低了。</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> html_obj = etree.HTML(html_code)</span><br><span class="line">print(type(html_obj))</span><br><span class="line">print(html_obj)</span><br><span class="line">#查找div中的a标签</span><br><span class="line">div_a = html_obj.xpath(&apos;//div/a/text()&apos;)[0]</span><br><span class="line">print(div_a)</span><br><span class="line">second_a = html_obj.xpath(&apos;//ul/li[last()]/a[@class=&quot;second_a&quot;]/text()&apos;)[0]</span><br><span class="line">print(second_a)</span><br><span class="line">img = html_obj.xpath(&apos;//body/ul/li/a/@href&apos;)</span><br><span class="line">print(img)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;举个例子，我们去邮局投递信件，如果不使用邮箱（也就是缓冲区），你必须得把信直接交给邮递员。有同学会说，直接给邮递员不是挺简单的嘛？其实不简单，你必须 得认识谁是邮递员，才能把信给他。这就产生了你和邮递员之间的依赖（相当于生产者和消费者的强耦合）。万一哪天邮递员 换人了，你还要重新认识一下（相当于消费者变化导致修改生产者代码）。而邮箱相对来说比较固定，你依赖它的成本就比较低（相当于和缓冲区之间的弱耦合）。</p>
 </blockquote>
-</li>
-<li><p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;lxml.etree._Element&apos;&gt;</span><br><span class="line">&lt;Element html at 0x23f4dfeef08&gt;</span><br><span class="line">我是神</span><br><span class="line">Python</span><br><span class="line">[&apos;https://www.baidu.com&apos;, &apos;https://mail.qq.com&apos;, &apos;https://www.taobao.com&apos;, &apos;https://pypi.python.org&apos;, &apos;https://pypi.python.org&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>xpath拿到得都是一个个的ElementTree对象，所以如果需要查找内容的话，还需要遍历拿到数据的列表<br><strong>更多详情可以参考<a href="http://www.w3school.com.cn/xpath/xpath_syntax.asp" target="_blank" rel="noopener">W3school</a></strong></p>
-</li>
-</ul>
+<h5 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h5><p>&emsp;&emsp;由于生产者与消费者是两个独立的并发体，他们之间是用缓冲区通信的，生产者只需要往缓冲区里丢数据，就可以继续生产下一个数据，而消费者只需要从缓冲区拿数据即可，这样就不会因为彼此的处理速度而发生阻塞。</p>
+<blockquote>
+<p>&emsp;&emsp;继续上面的例子，如果我们不使用邮箱，就得在邮局等邮递员，直到他回来，把信件交给他，这期间我们啥事儿都不能干（也就是生产者阻塞）。或者邮递员得挨家挨户问，谁要寄信（相当于消费者轮询）。</p>
+</blockquote>
+<h5 id="支持忙闲不均"><a href="#支持忙闲不均" class="headerlink" title="支持忙闲不均"></a>支持忙闲不均</h5><p>&emsp;&emsp;当生产者制造数据快的时候，消费者来不及处理，未处理的数据可以暂时存在缓冲区中，慢慢处理掉。而不至于因为消费者的性能造成数据丢失或影响生产者生产。</p>
+<blockquote>
+<p>&emsp;&emsp;我们再拿寄信的例子，假设邮递员一次只能带走1000封信，万一碰上情人节（或是圣诞节）送贺卡，需要寄出去的信超过了1000封，这时候邮箱这个缓冲区就派上用场了。邮递员把来不及带走的信暂存在邮箱中，等下次过来时再拿走。</p>
+</blockquote>
+<h4 id="Python中的多线程编程"><a href="#Python中的多线程编程" class="headerlink" title="Python中的多线程编程"></a>Python中的多线程编程</h4><p>&emsp;&emsp;下面我们实现一个生产者消费者模式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">from queue import Queue</span><br><span class="line">import random,threading,time</span><br><span class="line"></span><br><span class="line">#生产者类</span><br><span class="line">class Producer(threading.Thread):</span><br><span class="line">    def __init__(self, name,queue):</span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line">        self.data=queue</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        for i in range(5):</span><br><span class="line">            print(&quot;%s is producing %d to the queue!&quot; % (self.getName(), i))</span><br><span class="line">            self.data.put(i)</span><br><span class="line">            time.sleep(random.randrange(10)/5)</span><br><span class="line">        print(&quot;%s finished!&quot; % self.getName())</span><br><span class="line"></span><br><span class="line">#消费者类</span><br><span class="line">class Consumer(threading.Thread):</span><br><span class="line">    def __init__(self,name,queue):</span><br><span class="line">        threading.Thread.__init__(self,name=name)</span><br><span class="line">        self.data=queue</span><br><span class="line">    def run(self):</span><br><span class="line">        for i in range(5):</span><br><span class="line">            val = self.data.get()</span><br><span class="line">            print(&quot;%s is consuming. %d in the queue is consumed!&quot; % (self.getName(),val))</span><br><span class="line">            time.sleep(random.randrange(10))</span><br><span class="line">        print(&quot;%s finished!&quot; % self.getName())</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    queue = Queue()</span><br><span class="line">    producer = Producer(&apos;Producer&apos;,queue)</span><br><span class="line">    consumer = Consumer(&apos;Consumer&apos;,queue)</span><br><span class="line"></span><br><span class="line">    producer.start()</span><br><span class="line">    consumer.start()</span><br><span class="line"></span><br><span class="line">    producer.join()</span><br><span class="line">    consumer.join()</span><br><span class="line">    print &apos;All threads finished!&apos;</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Producer is producing 0 to the queue!</span><br><span class="line">Consumer is consuming. 0 in the queue is consumed!</span><br><span class="line">Producer is producing 1 to the queue!</span><br><span class="line">Producer is producing 2 to the queue!</span><br><span class="line">Consumer is consuming. 1 in the queue is consumed!</span><br><span class="line">Consumer is consuming. 2 in the queue is consumed!</span><br><span class="line">Producer is producing 3 to the queue!</span><br><span class="line">Producer is producing 4 to the queue!</span><br><span class="line">Producer finished!</span><br><span class="line">Consumer is consuming. 3 in the queue is consumed!</span><br><span class="line">Consumer is consuming. 4 in the queue is consumed!</span><br><span class="line">Consumer finished!</span><br><span class="line">All threads finished!</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;本例通过Python实现了一个简单的生产者消费者模型。Python中的Queue模块已经提供了对线程同步的支持，所以本文并没有涉及锁、同步、死锁等多线程问题。</p>
 
       
     </div>
@@ -400,12 +380,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/数据解析/" rel="tag"><i class="fa fa-tag"></i> 数据解析</a>
-          
-        </div>
-      
 
       
       
@@ -415,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/18/python/" rel="next" title="正则表达式">
-                <i class="fa fa-chevron-left"></i> 正则表达式
+              <a href="/2018/12/09/linuxcmd/" rel="next" title="Linux&ensp;常用命令">
+                <i class="fa fa-chevron-left"></i> Linux&ensp;常用命令
               </a>
             
           </div>
@@ -424,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/14/txt/" rel="prev" title="TXT文本存储">
-                TXT文本存储 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -597,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-常见数据类型"><span class="nav-number">1.</span> <span class="nav-text">一.常见数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装"><span class="nav-number">2.</span> <span class="nav-text">二.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-语法使用"><span class="nav-number">3.</span> <span class="nav-text">三.语法使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-ensp-什么是生产者消费者模式"><span class="nav-number">1.</span> <span class="nav-text">一 什么是生产者消费者模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-ensp-生产者消费者模式的优点"><span class="nav-number">2.</span> <span class="nav-text">二  生产者消费者模式的优点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解耦"><span class="nav-number">2.1.</span> <span class="nav-text">解耦</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并发"><span class="nav-number">2.2.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#支持忙闲不均"><span class="nav-number">2.3.</span> <span class="nav-text">支持忙闲不均</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python中的多线程编程"><span class="nav-number">3.</span> <span class="nav-text">Python中的多线程编程</span></a></li></ol></div>
             
 
           </div>

@@ -6,10 +6,33 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chen-zq.top/"/>
-  <updated>2018-12-09T10:58:16.627Z</updated>
+  <updated>2018-12-18T14:50:34.560Z</updated>
   <id>http://chen-zq.top/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>生产者与消费者模式</title>
+    <link href="http://chen-zq.top/2018/12/18/%C2%96ProducerandConsumer/"/>
+    <id>http://chen-zq.top/2018/12/18/ProducerandConsumer/</id>
+    <published>2018-12-18T14:31:09.000Z</published>
+    <updated>2018-12-18T14:50:34.560Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="一-ensp-什么是生产者消费者模式"><a href="#一-ensp-什么是生产者消费者模式" class="headerlink" title="一&ensp;什么是生产者消费者模式"></a>一&ensp;什么是生产者消费者模式</h4><p>&emsp;&emsp;在软件开发的过程中，经常碰到这样的场景：<br>&emsp;&emsp;某些模块负责生产数据，这些数据由其他模块来负责处理（此处的模块可能是：函数、线程、进程等）。产生数据的模块称为生产者，而处理数据的模块称为消费者。在生产者与消费者之间的缓冲区称之为仓库。生产者负责往仓库运输商品，而消费者负责从仓库里取出商品，这就构成了生产者消费者模式。<br><strong>结构图如下：</strong><br><img src="/2018/12/18/ProducerandConsumer/01.png" alt=""><br>为了大家容易理解，我们举一个寄信的例子。假设你要寄一封信，大致过程如下：</p><ol><li>你把信写好——相当于生产者生产数据</li><li>你把信放入邮箱——相当于生产者把数据放入缓冲区</li><li>邮递员把信从邮箱取出，做相应处理——相当于消费者把数据取出缓冲区，处理数据</li></ol><h4 id="二-ensp-生产者消费者模式的优点"><a href="#二-ensp-生产者消费者模式的优点" class="headerlink" title="二 &ensp;生产者消费者模式的优点"></a>二 &ensp;生产者消费者模式的优点</h4><h5 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h5><p>&emsp;&emsp;假设生产者和消费者分别是两个线程。如果让生产者直接调用消费者的某个方法，那么生产者对于消费者就会产生依赖（也就是耦合）。如果未来消费者的代码发生变化，可能会影响到生产者的代码。而如果两者都依赖于某个缓冲区，两者之间不直接依赖，耦合也就相应降低了。</p><blockquote><p>&emsp;&emsp;举个例子，我们去邮局投递信件，如果不使用邮箱（也就是缓冲区），你必须得把信直接交给邮递员。有同学会说，直接给邮递员不是挺简单的嘛？其实不简单，你必须 得认识谁是邮递员，才能把信给他。这就产生了你和邮递员之间的依赖（相当于生产者和消费者的强耦合）。万一哪天邮递员 换人了，你还要重新认识一下（相当于消费者变化导致修改生产者代码）。而邮箱相对来说比较固定，你依赖它的成本就比较低（相当于和缓冲区之间的弱耦合）。</p></blockquote><h5 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h5><p>&emsp;&emsp;由于生产者与消费者是两个独立的并发体，他们之间是用缓冲区通信的，生产者只需要往缓冲区里丢数据，就可以继续生产下一个数据，而消费者只需要从缓冲区拿数据即可，这样就不会因为彼此的处理速度而发生阻塞。</p><blockquote><p>&emsp;&emsp;继续上面的例子，如果我们不使用邮箱，就得在邮局等邮递员，直到他回来，把信件交给他，这期间我们啥事儿都不能干（也就是生产者阻塞）。或者邮递员得挨家挨户问，谁要寄信（相当于消费者轮询）。</p></blockquote><h5 id="支持忙闲不均"><a href="#支持忙闲不均" class="headerlink" title="支持忙闲不均"></a>支持忙闲不均</h5><p>&emsp;&emsp;当生产者制造数据快的时候，消费者来不及处理，未处理的数据可以暂时存在缓冲区中，慢慢处理掉。而不至于因为消费者的性能造成数据丢失或影响生产者生产。</p><blockquote><p>&emsp;&emsp;我们再拿寄信的例子，假设邮递员一次只能带走1000封信，万一碰上情人节（或是圣诞节）送贺卡，需要寄出去的信超过了1000封，这时候邮箱这个缓冲区就派上用场了。邮递员把来不及带走的信暂存在邮箱中，等下次过来时再拿走。</p></blockquote><h4 id="Python中的多线程编程"><a href="#Python中的多线程编程" class="headerlink" title="Python中的多线程编程"></a>Python中的多线程编程</h4><p>&emsp;&emsp;下面我们实现一个生产者消费者模式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">from queue import Queue</span><br><span class="line">import random,threading,time</span><br><span class="line"></span><br><span class="line">#生产者类</span><br><span class="line">class Producer(threading.Thread):</span><br><span class="line">    def __init__(self, name,queue):</span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line">        self.data=queue</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        for i in range(5):</span><br><span class="line">            print(&quot;%s is producing %d to the queue!&quot; % (self.getName(), i))</span><br><span class="line">            self.data.put(i)</span><br><span class="line">            time.sleep(random.randrange(10)/5)</span><br><span class="line">        print(&quot;%s finished!&quot; % self.getName())</span><br><span class="line"></span><br><span class="line">#消费者类</span><br><span class="line">class Consumer(threading.Thread):</span><br><span class="line">    def __init__(self,name,queue):</span><br><span class="line">        threading.Thread.__init__(self,name=name)</span><br><span class="line">        self.data=queue</span><br><span class="line">    def run(self):</span><br><span class="line">        for i in range(5):</span><br><span class="line">            val = self.data.get()</span><br><span class="line">            print(&quot;%s is consuming. %d in the queue is consumed!&quot; % (self.getName(),val))</span><br><span class="line">            time.sleep(random.randrange(10))</span><br><span class="line">        print(&quot;%s finished!&quot; % self.getName())</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    queue = Queue()</span><br><span class="line">    producer = Producer(&apos;Producer&apos;,queue)</span><br><span class="line">    consumer = Consumer(&apos;Consumer&apos;,queue)</span><br><span class="line"></span><br><span class="line">    producer.start()</span><br><span class="line">    consumer.start()</span><br><span class="line"></span><br><span class="line">    producer.join()</span><br><span class="line">    consumer.join()</span><br><span class="line">    print &apos;All threads finished!&apos;</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p><p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Producer is producing 0 to the queue!</span><br><span class="line">Consumer is consuming. 0 in the queue is consumed!</span><br><span class="line">Producer is producing 1 to the queue!</span><br><span class="line">Producer is producing 2 to the queue!</span><br><span class="line">Consumer is consuming. 1 in the queue is consumed!</span><br><span class="line">Consumer is consuming. 2 in the queue is consumed!</span><br><span class="line">Producer is producing 3 to the queue!</span><br><span class="line">Producer is producing 4 to the queue!</span><br><span class="line">Producer finished!</span><br><span class="line">Consumer is consuming. 3 in the queue is consumed!</span><br><span class="line">Consumer is consuming. 4 in the queue is consumed!</span><br><span class="line">Consumer finished!</span><br><span class="line">All threads finished!</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;本例通过Python实现了一个简单的生产者消费者模型。Python中的Queue模块已经提供了对线程同步的支持，所以本文并没有涉及锁、同步、死锁等多线程问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;一-ensp-什么是生产者消费者模式&quot;&gt;&lt;a href=&quot;#一-ensp-什么是生产者消费者模式&quot; class=&quot;headerlink&quot; title=&quot;一&amp;ensp;什么是生产者消费者模式&quot;&gt;&lt;/a&gt;一&amp;ensp;什么是生产者消费者模式&lt;/h4&gt;&lt;p&gt;&amp;emsp;
+      
+    
+    </summary>
+    
+      <category term="队列&amp;架构" scheme="http://chen-zq.top/categories/%E9%98%9F%E5%88%97-%E6%9E%B6%E6%9E%84/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux&amp;ensp;常用命令</title>
@@ -223,11 +246,11 @@
       <category term="框架&amp;Spider" scheme="http://chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
+      <category term="爬虫" scheme="http://chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
       <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
     
       <category term="数据库" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="爬虫" scheme="http://chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -277,9 +300,9 @@
       <category term="项目&amp;部署" scheme="http://chen-zq.top/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
     
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
-    
       <category term="爬虫" scheme="http://chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
     
       <category term="部署" scheme="http://chen-zq.top/tags/%E9%83%A8%E7%BD%B2/"/>
     
@@ -520,30 +543,6 @@
     
     
       <category term="数据解析" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见网页状态码</title>
-    <link href="http://chen-zq.top/2017/08/14/status/"/>
-    <id>http://chen-zq.top/2017/08/14/status/</id>
-    <published>2017-08-14T06:12:24.000Z</published>
-    <updated>2018-12-02T02:42:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>2开头 （请求成功）表示成功处理了请求的状态代码。</strong></p><p>200   （成功）  服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>201   （已创建）  请求成功并且服务器创建了新的资源。<br>202   （已接受）  服务器已接受请求，但尚未处理。<br>203   （非授权信息）  服务器已成功处理了请求，但返回的信息可能来自另一来源。<br>204   （无内容）  服务器成功处理了请求，但没有返回任何内容。<br>205   （重置内容） 服务器成功处理了请求，但没有返回任何内容。<br>206   （部分内容）  服务器成功处理了部分 GET 请求。</p><p><strong>3开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</strong></p><p>300   （多种选择）  针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。<br>301   （永久移动）  请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。<br>302   （临时移动）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>303   （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。<br>304   （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。<br>305   （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。<br>307   （临时重定向）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p><p><strong>4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。</strong></p><p>400   （错误请求） 服务器不理解请求的语法。<br>401   （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。<br>403   （禁止） 服务器拒绝请求。<br>404   （未找到） 服务器找不到请求的网页。<br>405   （方法禁用） 禁用请求中指定的方法。<br>406   （不接受） 无法使用请求的内容特性响应请求的网页。<br>407   （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。<br>408   （请求超时）  服务器等候请求时发生超时。<br>409   （冲突）  服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。<br>410   （已删除）  如果请求的资源已永久删除，服务器就会返回此响应。<br>411   （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。<br>412   （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。<br>413   （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。<br>414   （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。<br>415   （不支持的媒体类型） 请求的格式不受请求页面的支持。<br>416   （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。<br>417   （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p><p><strong>5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</strong></p><p>500   （服务器内部错误）  服务器遇到错误，无法完成请求。<br>501   （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。<br>502   （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。<br>503   （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。<br>504   （网关超时）  服务器作为网关或代理，但是没有及时从上游服务器收到请求。<br>505   （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p><hr>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;2开头 （请求成功）表示成功处理了请求的状态代码。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;200   （成功）  服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。&lt;br&gt;201   （已创建）  请求成功并且服务器创建了新的资源。&lt;br&gt;202   
-      
-    
-    </summary>
-    
-      <category term="网络&amp;前端" scheme="http://chen-zq.top/categories/%E7%BD%91%E7%BB%9C-%E5%89%8D%E7%AB%AF/"/>
-    
     
   </entry>
   
