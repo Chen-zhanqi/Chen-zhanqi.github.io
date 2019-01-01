@@ -2,21 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>展展的博客</title>
   
-  
+  <subtitle>以梦为马，明日天涯</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://chen-zq.top/"/>
-  <updated>2018-12-18T14:50:34.560Z</updated>
-  <id>http://chen-zq.top/</id>
+  <link href="http://chenzqi.cn/"/>
+  <updated>2019-01-01T09:02:42.308Z</updated>
+  <id>http://chenzqi.cn/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>生产者与消费者模式</title>
-    <link href="http://chen-zq.top/2018/12/18/%C2%96ProducerandConsumer/"/>
-    <id>http://chen-zq.top/2018/12/18/ProducerandConsumer/</id>
+    <link href="http://chenzqi.cn/2018/12/18/%C2%96ProducerandConsumer/"/>
+    <id>http://chenzqi.cn/2018/12/18/ProducerandConsumer/</id>
     <published>2018-12-18T14:31:09.000Z</published>
-    <updated>2018-12-18T14:50:34.560Z</updated>
+    <updated>2019-01-01T09:02:42.308Z</updated>
     
     <content type="html"><![CDATA[<h4 id="一-ensp-什么是生产者消费者模式"><a href="#一-ensp-什么是生产者消费者模式" class="headerlink" title="一&ensp;什么是生产者消费者模式"></a>一&ensp;什么是生产者消费者模式</h4><p>&emsp;&emsp;在软件开发的过程中，经常碰到这样的场景：<br>&emsp;&emsp;某些模块负责生产数据，这些数据由其他模块来负责处理（此处的模块可能是：函数、线程、进程等）。产生数据的模块称为生产者，而处理数据的模块称为消费者。在生产者与消费者之间的缓冲区称之为仓库。生产者负责往仓库运输商品，而消费者负责从仓库里取出商品，这就构成了生产者消费者模式。<br><strong>结构图如下：</strong><br><img src="/2018/12/18/ProducerandConsumer/01.png" alt=""><br>为了大家容易理解，我们举一个寄信的例子。假设你要寄一封信，大致过程如下：</p><ol><li>你把信写好——相当于生产者生产数据</li><li>你把信放入邮箱——相当于生产者把数据放入缓冲区</li><li>邮递员把信从邮箱取出，做相应处理——相当于消费者把数据取出缓冲区，处理数据</li></ol><h4 id="二-ensp-生产者消费者模式的优点"><a href="#二-ensp-生产者消费者模式的优点" class="headerlink" title="二 &ensp;生产者消费者模式的优点"></a>二 &ensp;生产者消费者模式的优点</h4><h5 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h5><p>&emsp;&emsp;假设生产者和消费者分别是两个线程。如果让生产者直接调用消费者的某个方法，那么生产者对于消费者就会产生依赖（也就是耦合）。如果未来消费者的代码发生变化，可能会影响到生产者的代码。而如果两者都依赖于某个缓冲区，两者之间不直接依赖，耦合也就相应降低了。</p><blockquote><p>&emsp;&emsp;举个例子，我们去邮局投递信件，如果不使用邮箱（也就是缓冲区），你必须得把信直接交给邮递员。有同学会说，直接给邮递员不是挺简单的嘛？其实不简单，你必须 得认识谁是邮递员，才能把信给他。这就产生了你和邮递员之间的依赖（相当于生产者和消费者的强耦合）。万一哪天邮递员 换人了，你还要重新认识一下（相当于消费者变化导致修改生产者代码）。而邮箱相对来说比较固定，你依赖它的成本就比较低（相当于和缓冲区之间的弱耦合）。</p></blockquote><h5 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h5><p>&emsp;&emsp;由于生产者与消费者是两个独立的并发体，他们之间是用缓冲区通信的，生产者只需要往缓冲区里丢数据，就可以继续生产下一个数据，而消费者只需要从缓冲区拿数据即可，这样就不会因为彼此的处理速度而发生阻塞。</p><blockquote><p>&emsp;&emsp;继续上面的例子，如果我们不使用邮箱，就得在邮局等邮递员，直到他回来，把信件交给他，这期间我们啥事儿都不能干（也就是生产者阻塞）。或者邮递员得挨家挨户问，谁要寄信（相当于消费者轮询）。</p></blockquote><h5 id="支持忙闲不均"><a href="#支持忙闲不均" class="headerlink" title="支持忙闲不均"></a>支持忙闲不均</h5><p>&emsp;&emsp;当生产者制造数据快的时候，消费者来不及处理，未处理的数据可以暂时存在缓冲区中，慢慢处理掉。而不至于因为消费者的性能造成数据丢失或影响生产者生产。</p><blockquote><p>&emsp;&emsp;我们再拿寄信的例子，假设邮递员一次只能带走1000封信，万一碰上情人节（或是圣诞节）送贺卡，需要寄出去的信超过了1000封，这时候邮箱这个缓冲区就派上用场了。邮递员把来不及带走的信暂存在邮箱中，等下次过来时再拿走。</p></blockquote><h4 id="Python中的多线程编程"><a href="#Python中的多线程编程" class="headerlink" title="Python中的多线程编程"></a>Python中的多线程编程</h4><p>&emsp;&emsp;下面我们实现一个生产者消费者模式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">from queue import Queue</span><br><span class="line">import random,threading,time</span><br><span class="line"></span><br><span class="line">#生产者类</span><br><span class="line">class Producer(threading.Thread):</span><br><span class="line">    def __init__(self, name,queue):</span><br><span class="line">        threading.Thread.__init__(self, name=name)</span><br><span class="line">        self.data=queue</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        for i in range(5):</span><br><span class="line">            print(&quot;%s is producing %d to the queue!&quot; % (self.getName(), i))</span><br><span class="line">            self.data.put(i)</span><br><span class="line">            time.sleep(random.randrange(10)/5)</span><br><span class="line">        print(&quot;%s finished!&quot; % self.getName())</span><br><span class="line"></span><br><span class="line">#消费者类</span><br><span class="line">class Consumer(threading.Thread):</span><br><span class="line">    def __init__(self,name,queue):</span><br><span class="line">        threading.Thread.__init__(self,name=name)</span><br><span class="line">        self.data=queue</span><br><span class="line">    def run(self):</span><br><span class="line">        for i in range(5):</span><br><span class="line">            val = self.data.get()</span><br><span class="line">            print(&quot;%s is consuming. %d in the queue is consumed!&quot; % (self.getName(),val))</span><br><span class="line">            time.sleep(random.randrange(10))</span><br><span class="line">        print(&quot;%s finished!&quot; % self.getName())</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    queue = Queue()</span><br><span class="line">    producer = Producer(&apos;Producer&apos;,queue)</span><br><span class="line">    consumer = Consumer(&apos;Consumer&apos;,queue)</span><br><span class="line"></span><br><span class="line">    producer.start()</span><br><span class="line">    consumer.start()</span><br><span class="line"></span><br><span class="line">    producer.join()</span><br><span class="line">    consumer.join()</span><br><span class="line">    print &apos;All threads finished!&apos;</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p><p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Producer is producing 0 to the queue!</span><br><span class="line">Consumer is consuming. 0 in the queue is consumed!</span><br><span class="line">Producer is producing 1 to the queue!</span><br><span class="line">Producer is producing 2 to the queue!</span><br><span class="line">Consumer is consuming. 1 in the queue is consumed!</span><br><span class="line">Consumer is consuming. 2 in the queue is consumed!</span><br><span class="line">Producer is producing 3 to the queue!</span><br><span class="line">Producer is producing 4 to the queue!</span><br><span class="line">Producer finished!</span><br><span class="line">Consumer is consuming. 3 in the queue is consumed!</span><br><span class="line">Consumer is consuming. 4 in the queue is consumed!</span><br><span class="line">Consumer finished!</span><br><span class="line">All threads finished!</span><br></pre></td></tr></table></figure></p><p>&emsp;&emsp;本例通过Python实现了一个简单的生产者消费者模型。Python中的Queue模块已经提供了对线程同步的支持，所以本文并没有涉及锁、同步、死锁等多线程问题。</p>]]></content>
     
@@ -29,15 +29,15 @@
     
     </summary>
     
-      <category term="队列&amp;架构" scheme="http://chen-zq.top/categories/%E9%98%9F%E5%88%97-%E6%9E%B6%E6%9E%84/"/>
+      <category term="队列&amp;架构 - 队列" scheme="http://chenzqi.cn/categories/%E9%98%9F%E5%88%97-%E6%9E%B6%E6%9E%84-%E9%98%9F%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>Linux&amp;ensp;常用命令</title>
-    <link href="http://chen-zq.top/2018/12/09/linuxcmd/"/>
-    <id>http://chen-zq.top/2018/12/09/linuxcmd/</id>
+    <link href="http://chenzqi.cn/2018/12/09/linuxcmd/"/>
+    <id>http://chenzqi.cn/2018/12/09/linuxcmd/</id>
     <published>2018-12-09T04:59:39.000Z</published>
     <updated>2018-12-09T10:58:16.627Z</updated>
     
@@ -52,19 +52,19 @@
     
     </summary>
     
-      <category term="解析&amp;命令" scheme="http://chen-zq.top/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
+      <category term="解析&amp;命令" scheme="http://chenzqi.cn/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
     
     
-      <category term="命令" scheme="http://chen-zq.top/tags/%E5%91%BD%E4%BB%A4/"/>
+      <category term="命令" scheme="http://chenzqi.cn/tags/%E5%91%BD%E4%BB%A4/"/>
     
-      <category term="linux" scheme="http://chen-zq.top/tags/linux/"/>
+      <category term="linux" scheme="http://chenzqi.cn/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>分析&amp;ensp;爬取必胜客全球餐厅信息</title>
-    <link href="http://chen-zq.top/2018/12/05/Pizzahut/"/>
-    <id>http://chen-zq.top/2018/12/05/Pizzahut/</id>
+    <link href="http://chenzqi.cn/2018/12/05/Pizzahut/"/>
+    <id>http://chenzqi.cn/2018/12/05/Pizzahut/</id>
     <published>2018-12-05T12:36:43.000Z</published>
     <updated>2018-12-09T05:07:08.923Z</updated>
     
@@ -80,19 +80,19 @@
     
     </summary>
     
-      <category term="框架&amp;Spider" scheme="http://chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
+      <category term="框架&amp;Spider" scheme="http://chenzqi.cn/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
-      <category term="爬虫" scheme="http://chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="http://chenzqi.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="数据分析" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+      <category term="数据分析" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
     <title>Docker简介与命令</title>
-    <link href="http://chen-zq.top/2018/11/23/docker/"/>
-    <id>http://chen-zq.top/2018/11/23/docker/</id>
+    <link href="http://chenzqi.cn/2018/11/23/docker/"/>
+    <id>http://chenzqi.cn/2018/11/23/docker/</id>
     <published>2018-11-23T08:28:12.000Z</published>
     <updated>2018-12-05T12:51:34.000Z</updated>
     
@@ -107,19 +107,19 @@
     
     </summary>
     
-      <category term="解析&amp;命令" scheme="http://chen-zq.top/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
+      <category term="解析&amp;命令" scheme="http://chenzqi.cn/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
     
     
-      <category term="docker" scheme="http://chen-zq.top/tags/docker/"/>
+      <category term="docker" scheme="http://chenzqi.cn/tags/docker/"/>
     
-      <category term="命令" scheme="http://chen-zq.top/tags/%E5%91%BD%E4%BB%A4/"/>
+      <category term="命令" scheme="http://chenzqi.cn/tags/%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
   <entry>
     <title>使用Nginx+Gunicorn+virtualenv+supervisor部署django项目</title>
-    <link href="http://chen-zq.top/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/"/>
-    <id>http://chen-zq.top/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/</id>
+    <link href="http://chenzqi.cn/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/"/>
+    <id>http://chenzqi.cn/2018/11/22/django-deploy-Nginx-Gunicorn-supervisor/</id>
     <published>2018-11-22T11:54:18.000Z</published>
     <updated>2018-12-05T12:54:18.000Z</updated>
     
@@ -135,19 +135,19 @@
     
     </summary>
     
-      <category term="项目&amp;部署" scheme="http://chen-zq.top/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
+      <category term="项目&amp;部署" scheme="http://chenzqi.cn/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
     
     
-      <category term="docker" scheme="http://chen-zq.top/tags/docker/"/>
+      <category term="docker" scheme="http://chenzqi.cn/tags/docker/"/>
     
-      <category term="项目" scheme="http://chen-zq.top/tags/%E9%A1%B9%E7%9B%AE/"/>
+      <category term="项目" scheme="http://chenzqi.cn/tags/%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
   <entry>
     <title>Django发送携带随机验证码邮件 邮箱找回密码</title>
-    <link href="http://chen-zq.top/2018/11/06/send-email/"/>
-    <id>http://chen-zq.top/2018/11/06/send-email/</id>
+    <link href="http://chenzqi.cn/2018/11/06/send-email/"/>
+    <id>http://chenzqi.cn/2018/11/06/send-email/</id>
     <published>2018-11-06T13:08:09.000Z</published>
     <updated>2018-12-02T01:58:38.000Z</updated>
     
@@ -168,19 +168,19 @@
     
     </summary>
     
-      <category term="邮件&amp;Django" scheme="http://chen-zq.top/categories/%E9%82%AE%E4%BB%B6-Django/"/>
+      <category term="邮件&amp;Django" scheme="http://chenzqi.cn/categories/%E9%82%AE%E4%BB%B6-Django/"/>
     
     
-      <category term="发送邮件" scheme="http://chen-zq.top/tags/%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
+      <category term="发送邮件" scheme="http://chenzqi.cn/tags/%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
     
-      <category term="Django" scheme="http://chen-zq.top/tags/Django/"/>
+      <category term="Django" scheme="http://chenzqi.cn/tags/Django/"/>
     
   </entry>
   
   <entry>
     <title>python常用函数集</title>
-    <link href="http://chen-zq.top/2018/10/23/common-function/"/>
-    <id>http://chen-zq.top/2018/10/23/common-function/</id>
+    <link href="http://chenzqi.cn/2018/10/23/common-function/"/>
+    <id>http://chenzqi.cn/2018/10/23/common-function/</id>
     <published>2018-10-23T13:53:39.000Z</published>
     <updated>2018-11-23T22:52:12.000Z</updated>
     
@@ -195,15 +195,15 @@
     
     </summary>
     
-      <category term="随记" scheme="http://chen-zq.top/categories/%E9%9A%8F%E8%AE%B0/"/>
+      <category term="随记" scheme="http://chenzqi.cn/categories/%E9%9A%8F%E8%AE%B0/"/>
     
     
   </entry>
   
   <entry>
     <title>CSV文件存储</title>
-    <link href="http://chen-zq.top/2018/10/14/csv/"/>
-    <id>http://chen-zq.top/2018/10/14/csv/</id>
+    <link href="http://chenzqi.cn/2018/10/14/csv/"/>
+    <id>http://chenzqi.cn/2018/10/14/csv/</id>
     <published>2018-10-14T06:59:04.000Z</published>
     <updated>2018-12-02T02:03:44.000Z</updated>
     
@@ -218,17 +218,17 @@
     
     </summary>
     
-      <category term="储存&amp;数据库" scheme="http://chen-zq.top/categories/%E5%82%A8%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="储存&amp;数据库" scheme="http://chenzqi.cn/categories/%E5%82%A8%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="数据存储" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
+      <category term="数据存储" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
   <entry>
     <title>Scrapy中将数据异步写入MYSQL数据库</title>
-    <link href="http://chen-zq.top/2018/10/11/AsyncToSql/"/>
-    <id>http://chen-zq.top/2018/10/11/AsyncToSql/</id>
+    <link href="http://chenzqi.cn/2018/10/11/AsyncToSql/"/>
+    <id>http://chenzqi.cn/2018/10/11/AsyncToSql/</id>
     <published>2018-10-11T07:32:28.000Z</published>
     <updated>2018-12-02T01:56:38.000Z</updated>
     
@@ -243,21 +243,21 @@
     
     </summary>
     
-      <category term="框架&amp;Spider" scheme="http://chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
+      <category term="框架&amp;Spider" scheme="http://chenzqi.cn/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
-      <category term="爬虫" scheme="http://chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="scrapy" scheme="http://chenzqi.cn/tags/scrapy/"/>
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
+      <category term="数据库" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-      <category term="数据库" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="爬虫" scheme="http://chenzqi.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>MySQL之(Terminal)创建数据库,通过代码对数据表、数据的基本操作</title>
-    <link href="http://chen-zq.top/2018/09/30/PyMysql/"/>
-    <id>http://chen-zq.top/2018/09/30/PyMysql/</id>
+    <link href="http://chenzqi.cn/2018/09/30/PyMysql/"/>
+    <id>http://chenzqi.cn/2018/09/30/PyMysql/</id>
     <published>2018-09-30T07:28:34.000Z</published>
     <updated>2018-12-02T02:03:52.000Z</updated>
     
@@ -272,17 +272,17 @@
     
     </summary>
     
-      <category term="储存&amp;数据库" scheme="http://chen-zq.top/categories/%E5%82%A8%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="储存&amp;数据库" scheme="http://chenzqi.cn/categories/%E5%82%A8%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="数据库" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>Scrapy基于scrapy_redis部署分布式爬虫</title>
-    <link href="http://chen-zq.top/2018/09/28/scrapy-redis/"/>
-    <id>http://chen-zq.top/2018/09/28/scrapy-redis/</id>
+    <link href="http://chenzqi.cn/2018/09/28/scrapy-redis/"/>
+    <id>http://chenzqi.cn/2018/09/28/scrapy-redis/</id>
     <published>2018-09-28T12:51:03.000Z</published>
     <updated>2018-12-02T02:05:18.000Z</updated>
     
@@ -297,21 +297,21 @@
     
     </summary>
     
-      <category term="项目&amp;部署" scheme="http://chen-zq.top/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
+      <category term="项目&amp;部署" scheme="http://chenzqi.cn/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
     
     
-      <category term="爬虫" scheme="http://chen-zq.top/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="scrapy" scheme="http://chenzqi.cn/tags/scrapy/"/>
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
+      <category term="爬虫" scheme="http://chenzqi.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="部署" scheme="http://chen-zq.top/tags/%E9%83%A8%E7%BD%B2/"/>
+      <category term="部署" scheme="http://chenzqi.cn/tags/%E9%83%A8%E7%BD%B2/"/>
     
   </entry>
   
   <entry>
     <title>scrapyd部署爬虫项目</title>
-    <link href="http://chen-zq.top/2018/09/27/scrapyd-bushu/"/>
-    <id>http://chen-zq.top/2018/09/27/scrapyd-bushu/</id>
+    <link href="http://chenzqi.cn/2018/09/27/scrapyd-bushu/"/>
+    <id>http://chenzqi.cn/2018/09/27/scrapyd-bushu/</id>
     <published>2018-09-27T13:19:07.000Z</published>
     <updated>2018-12-02T01:59:28.000Z</updated>
     
@@ -326,19 +326,19 @@
     
     </summary>
     
-      <category term="项目&amp;部署" scheme="http://chen-zq.top/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
+      <category term="项目&amp;部署" scheme="http://chenzqi.cn/categories/%E9%A1%B9%E7%9B%AE-%E9%83%A8%E7%BD%B2/"/>
     
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
+      <category term="scrapy" scheme="http://chenzqi.cn/tags/scrapy/"/>
     
-      <category term="部署" scheme="http://chen-zq.top/tags/%E9%83%A8%E7%BD%B2/"/>
+      <category term="部署" scheme="http://chenzqi.cn/tags/%E9%83%A8%E7%BD%B2/"/>
     
   </entry>
   
   <entry>
     <title>知乎点赞最高的30句金句</title>
-    <link href="http://chen-zq.top/2018/07/02/zhihu/"/>
-    <id>http://chen-zq.top/2018/07/02/zhihu/</id>
+    <link href="http://chenzqi.cn/2018/07/02/zhihu/"/>
+    <id>http://chenzqi.cn/2018/07/02/zhihu/</id>
     <published>2018-07-02T10:56:30.000Z</published>
     <updated>2018-12-02T03:07:16.000Z</updated>
     
@@ -356,15 +356,15 @@
     
     </summary>
     
-      <category term="语录&amp;生活" scheme="http://chen-zq.top/categories/%E8%AF%AD%E5%BD%95-%E7%94%9F%E6%B4%BB/"/>
+      <category term="语录&amp;生活" scheme="http://chenzqi.cn/categories/%E8%AF%AD%E5%BD%95-%E7%94%9F%E6%B4%BB/"/>
     
     
   </entry>
   
   <entry>
     <title>Scrapy框架设置随机请求头</title>
-    <link href="http://chen-zq.top/2018/06/11/RandomUA/"/>
-    <id>http://chen-zq.top/2018/06/11/RandomUA/</id>
+    <link href="http://chenzqi.cn/2018/06/11/RandomUA/"/>
+    <id>http://chenzqi.cn/2018/06/11/RandomUA/</id>
     <published>2018-06-11T12:00:21.000Z</published>
     <updated>2018-12-02T02:44:02.000Z</updated>
     
@@ -381,17 +381,17 @@
     
     </summary>
     
-      <category term="框架&amp;Spider" scheme="http://chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
+      <category term="框架&amp;Spider" scheme="http://chenzqi.cn/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
+      <category term="scrapy" scheme="http://chenzqi.cn/tags/scrapy/"/>
     
   </entry>
   
   <entry>
     <title>时光如水 流水无言</title>
-    <link href="http://chen-zq.top/2017/12/02/%E8%AF%AD%E5%BD%95/"/>
-    <id>http://chen-zq.top/2017/12/02/语录/</id>
+    <link href="http://chenzqi.cn/2017/12/02/%E8%AF%AD%E5%BD%95/"/>
+    <id>http://chenzqi.cn/2017/12/02/语录/</id>
     <published>2017-12-02T09:03:58.000Z</published>
     <updated>2018-12-02T17:33:26.000Z</updated>
     
@@ -408,15 +408,15 @@
     
     </summary>
     
-      <category term="语录&amp;生活" scheme="http://chen-zq.top/categories/%E8%AF%AD%E5%BD%95-%E7%94%9F%E6%B4%BB/"/>
+      <category term="语录&amp;生活" scheme="http://chenzqi.cn/categories/%E8%AF%AD%E5%BD%95-%E7%94%9F%E6%B4%BB/"/>
     
     
   </entry>
   
   <entry>
     <title>scrapy框架安装</title>
-    <link href="http://chen-zq.top/2017/11/10/scrapy%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/"/>
-    <id>http://chen-zq.top/2017/11/10/scrapy框架安装/</id>
+    <link href="http://chenzqi.cn/2017/11/10/scrapy%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/"/>
+    <id>http://chenzqi.cn/2017/11/10/scrapy框架安装/</id>
     <published>2017-11-10T11:44:11.000Z</published>
     <updated>2018-12-02T02:43:30.000Z</updated>
     
@@ -432,21 +432,21 @@
     
     </summary>
     
-      <category term="框架&amp;Spider" scheme="http://chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
+      <category term="框架&amp;Spider" scheme="http://chenzqi.cn/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
+      <category term="scrapy" scheme="http://chenzqi.cn/tags/scrapy/"/>
     
-      <category term="框架" scheme="http://chen-zq.top/tags/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://chenzqi.cn/tags/%E6%A1%86%E6%9E%B6/"/>
     
-      <category term="安装" scheme="http://chen-zq.top/tags/%E5%AE%89%E8%A3%85/"/>
+      <category term="安装" scheme="http://chenzqi.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
   <entry>
     <title>Scrapy爬虫框架概述</title>
-    <link href="http://chen-zq.top/2017/11/05/Scrapy%E6%A1%86%E6%9E%B6/"/>
-    <id>http://chen-zq.top/2017/11/05/Scrapy框架/</id>
+    <link href="http://chenzqi.cn/2017/11/05/Scrapy%E6%A1%86%E6%9E%B6/"/>
+    <id>http://chenzqi.cn/2017/11/05/Scrapy框架/</id>
     <published>2017-11-05T09:14:31.000Z</published>
     <updated>2018-12-02T02:43:22.000Z</updated>
     
@@ -461,19 +461,19 @@
     
     </summary>
     
-      <category term="框架&amp;Spider" scheme="http://chen-zq.top/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
+      <category term="框架&amp;Spider" scheme="http://chenzqi.cn/categories/%E6%A1%86%E6%9E%B6-Spider/"/>
     
     
-      <category term="scrapy" scheme="http://chen-zq.top/tags/scrapy/"/>
+      <category term="scrapy" scheme="http://chenzqi.cn/tags/scrapy/"/>
     
-      <category term="框架" scheme="http://chen-zq.top/tags/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://chenzqi.cn/tags/%E6%A1%86%E6%9E%B6/"/>
     
   </entry>
   
   <entry>
     <title>TXT文本存储</title>
-    <link href="http://chen-zq.top/2017/10/14/txt/"/>
-    <id>http://chen-zq.top/2017/10/14/txt/</id>
+    <link href="http://chenzqi.cn/2017/10/14/txt/"/>
+    <id>http://chenzqi.cn/2017/10/14/txt/</id>
     <published>2017-10-14T06:22:14.000Z</published>
     <updated>2018-12-02T02:41:42.000Z</updated>
     
@@ -488,17 +488,17 @@
     
     </summary>
     
-      <category term="储存&amp;数据库" scheme="http://chen-zq.top/categories/%E5%82%A8%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="储存&amp;数据库" scheme="http://chenzqi.cn/categories/%E5%82%A8%E5%AD%98-%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="数据存储" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
+      <category term="数据存储" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
   <entry>
     <title>xpath语法与LXML库的基本使用</title>
-    <link href="http://chen-zq.top/2017/09/29/xpath/"/>
-    <id>http://chen-zq.top/2017/09/29/xpath/</id>
+    <link href="http://chenzqi.cn/2017/09/29/xpath/"/>
+    <id>http://chenzqi.cn/2017/09/29/xpath/</id>
     <published>2017-09-29T12:03:43.000Z</published>
     <updated>2018-12-02T02:41:34.000Z</updated>
     
@@ -513,17 +513,17 @@
     
     </summary>
     
-      <category term="解析&amp;命令" scheme="http://chen-zq.top/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
+      <category term="解析&amp;命令" scheme="http://chenzqi.cn/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
     
     
-      <category term="数据解析" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
+      <category term="数据解析" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
     
   </entry>
   
   <entry>
     <title>正则表达式</title>
-    <link href="http://chen-zq.top/2017/09/18/python/"/>
-    <id>http://chen-zq.top/2017/09/18/python/</id>
+    <link href="http://chenzqi.cn/2017/09/18/python/"/>
+    <id>http://chenzqi.cn/2017/09/18/python/</id>
     <published>2017-09-18T13:21:36.000Z</published>
     <updated>2018-12-02T02:44:18.000Z</updated>
     
@@ -539,10 +539,10 @@
     
     </summary>
     
-      <category term="解析&amp;命令" scheme="http://chen-zq.top/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
+      <category term="解析&amp;命令" scheme="http://chenzqi.cn/categories/%E8%A7%A3%E6%9E%90-%E5%91%BD%E4%BB%A4/"/>
     
     
-      <category term="数据解析" scheme="http://chen-zq.top/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
+      <category term="数据解析" scheme="http://chenzqi.cn/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
     
   </entry>
   
