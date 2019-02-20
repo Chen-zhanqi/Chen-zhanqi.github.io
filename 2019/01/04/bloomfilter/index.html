@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="数据解析," />
+  <meta name="keywords" content="去重," />
 
 
 
@@ -82,24 +82,18 @@
 
 
 
-<meta name="description" content="XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件… 一.常见数据类型 用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:   放在HTML里. 直接放">
-<meta name="keywords" content="数据解析">
+<meta name="description" content="一&amp;ensp;前言&amp;emsp;&amp;emsp;”去重”是日常工作中会经常用到的一项技能，在爬虫领域更是常用，并且规模一般都比较大。去重需要考虑两个点：去重的数据量、去重速度。为了保持较快的去重速度，一般选择在内存中进行去重。对于爬取的数据去重方案  &amp;emsp;使用scrapy自带的set集合去重，当程序结束set集合会被清空，再次运行会导致数据重复 &amp;emsp;使用mysql做去重，对url地址进行">
+<meta name="keywords" content="去重">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xpath语法与LXML库的基本使用">
-<meta property="og:url" content="http://chenzqi.cn/2017/09/29/xpath/index.html">
+<meta property="og:title" content="BloomFilter">
+<meta property="og:url" content="http://chenzqi.cn/2019/01/04/bloomfilter/index.html">
 <meta property="og:site_name" content="展展的博客">
-<meta property="og:description" content="XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件… 一.常见数据类型 用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:   放在HTML里. 直接放">
+<meta property="og:description" content="一&amp;ensp;前言&amp;emsp;&amp;emsp;”去重”是日常工作中会经常用到的一项技能，在爬虫领域更是常用，并且规模一般都比较大。去重需要考虑两个点：去重的数据量、去重速度。为了保持较快的去重速度，一般选择在内存中进行去重。对于爬取的数据去重方案  &amp;emsp;使用scrapy自带的set集合去重，当程序结束set集合会被清空，再次运行会导致数据重复 &amp;emsp;使用mysql做去重，对url地址进行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chenzqi.cn/2017/09/29/xpath/01.png">
-<meta property="og:image" content="http://chenzqi.cn/2017/09/29/xpath/02.png">
-<meta property="og:image" content="http://chenzqi.cn/2017/09/29/xpath/03.png">
-<meta property="og:image" content="http://chenzqi.cn/2017/09/29/xpath/06.png">
-<meta property="og:image" content="http://chenzqi.cn/2017/09/29/xpath/07.png">
-<meta property="og:updated_time" content="2018-12-02T02:41:34.000Z">
+<meta property="og:updated_time" content="2019-01-05T08:13:50.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xpath语法与LXML库的基本使用">
-<meta name="twitter:description" content="XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件… 一.常见数据类型 用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:   放在HTML里. 直接放">
-<meta name="twitter:image" content="http://chenzqi.cn/2017/09/29/xpath/01.png">
+<meta name="twitter:title" content="BloomFilter">
+<meta name="twitter:description" content="一&amp;ensp;前言&amp;emsp;&amp;emsp;”去重”是日常工作中会经常用到的一项技能，在爬虫领域更是常用，并且规模一般都比较大。去重需要考虑两个点：去重的数据量、去重速度。为了保持较快的去重速度，一般选择在内存中进行去重。对于爬取的数据去重方案  &amp;emsp;使用scrapy自带的set集合去重，当程序结束set集合会被清空，再次运行会导致数据重复 &amp;emsp;使用mysql做去重，对url地址进行">
 
 
 
@@ -129,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://chenzqi.cn/2017/09/29/xpath/"/>
+  <link rel="canonical" href="http://chenzqi.cn/2019/01/04/bloomfilter/"/>
 
 
 
 
 
-  <title>xpath语法与LXML库的基本使用 | 展展的博客</title>
+  <title>BloomFilter | 展展的博客</title>
   
 
 
@@ -253,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenzqi.cn/2017/09/29/xpath/">
+    <link itemprop="mainEntityOfPage" href="http://chenzqi.cn/2019/01/04/bloomfilter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -270,7 +264,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">xpath语法与LXML库的基本使用</h2>
+          <h2 class="post-title" itemprop="name headline">BloomFilter</h2>
         
 
         <div class="post-meta">
@@ -285,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T20:03:43+08:00">
-                2017-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T20:45:48+08:00">
+                2019-01-04
               </time>
             
 
@@ -308,8 +302,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/解析-命令/" itemprop="url" rel="index">
-                    <span itemprop="name">解析&命令</span>
+                  <a href="/categories/数据-清洗/" itemprop="url" rel="index">
+                    <span itemprop="name">数据&清洗</span>
                   </a>
                 </span>
 
@@ -345,46 +339,13 @@
       
 
       
-        <p><strong>XPath 是一门在 XML 文档中查找信息的语言,但其实它也可以用来查找HTML信息.它可以借助XPth强大的语法很方便的定位元素,而且现在很多浏览器都有插件让你很容易的就得到元素的XPath路径,如firefox的firebug插件…</strong></p>
-<h3 id="一-常见数据类型"><a href="#一-常见数据类型" class="headerlink" title="一.常见数据类型"></a>一.常见数据类型</h3><ul>
-<li>用Python发送 http/https 请求获取网上数据,从web上采集回来的数据的数据类型有很多种,主要有:</li>
-</ul>
+        <h4 id="一-ensp-前言"><a href="#一-ensp-前言" class="headerlink" title="一&ensp;前言"></a><p style="color: #000000">一&ensp;前言</p></h4><p>&emsp;&emsp;”去重”是日常工作中会经常用到的一项技能，在爬虫领域更是常用，并且规模一般都比较大。去重需要考虑两个点：去重的数据量、去重速度。为了保持较快的去重速度，一般选择在内存中进行去重。<br><strong>对于爬取的数据去重方案</strong></p>
 <ol>
-<li>放在HTML里.</li>
-<li>直接放在javascript里.</li>
-<li>放在JSON里.</li>
-<li>放在XML里.</li>
+<li>&emsp;使用scrapy自带的set集合去重，当程序结束set集合会被清空，再次运行会导致数据重复</li>
+<li>&emsp;使用mysql做去重，对url地址进行MD5，Base64加密，加密之后会得到一串字符，判断字符串是否在mysql表中，如果在表示已经爬取过，如果不在，表示没有爬取,执行请求，将加密后的url地址存入表中。<span style="color:red;">缺点</span>： 但是这个方法对mysql压力过大，导致崩溃，不推荐</li>
+<li>&emsp;使用scrapy_redis的去重策略，会将已经爬取的url地址经过编码后存入redis，并且会做数据持久化，当爬虫再次启动时，会重新加载本地的数据，对爬虫的url做去重。<span style="color:red;">缺点</span>：如果数据量较大的时候，会占用较多的内存空间</li>
+<li>&emsp;使用布隆去重，采用多重哈希，将url地址映射到位阵列中的某个点上，空间和时间利用率更高(推荐)。布隆去重的优点和缺点:<br><strong>优点</strong><br>&emsp;&emsp;相比于其它的数据结构，布隆过滤器在空间和时间方面都有巨大的优势。布隆过滤器存储空间和插入/查询时间都是常数。另外，Hash 函数相互之间没有关系，方便由硬件并行实现。布隆过滤器不需要存储元素本身，在某些对保密要求非常严格的场合有优势<br><strong>缺点</strong><br>&emsp;&emsp;但是布隆过滤器的缺点和优点一样明显。误算率（False Positive）是其中之一。随着存入的元素数量增加，误算率随之增加。但是如果元素数量太少，则使用散列表足矣。</li>
 </ol>
-<ul>
-<li>常用来解析这些数据的方式有re/正则表达式,XPath定位,BeautifulSoup定位,json等,本文记录xpath语法的基本使用</li>
-</ul>
-<h3 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h3><ul>
-<li><strong>使用xpath语法前需要安装第三方库LXML</strong><br>lxml第三方的HTML解析库,Xpath全称是XML Path Language，也就是XML路径语言,它是一门在XML文档中查找信息的语言,它最初是用来搜寻XML文档的。但是它同样也适用于HTML文档的搜索,xpath是通过路径表达式在HTML中选择节点</li>
-<li>使用命令行工具<strong>pip3 install lxml</strong>安装lxml第三方库<br><img src="/2017/09/29/xpath/01.png" alt="图片吃饭去了"><br><img src="/2017/09/29/xpath/02.png" alt="图片吃饭去了"></li>
-</ul>
-<h3 id="三-语法使用"><a href="#三-语法使用" class="headerlink" title="三.语法使用"></a>三.语法使用</h3><ul>
-<li>解析html源码字符串。使用“lxml.etree.HTML( )”进行解析<br><img src="/2017/09/29/xpath/03.png" alt="图片吃饭去了"></li>
-<li><strong>选取节点,下面是最常用的路径表达式</strong><br><img src="/2017/09/29/xpath/06.png" alt="图片吃饭去了"><br><img src="/2017/09/29/xpath/07.png" alt="图片吃饭去了"></li>
-<li>tostring()函数是将一个element tree对象转化为html字符串</li>
-<li>fromstring()函数是将一个字符串转化为一个element tree对象</li>
-<li>text()只能获取当前标签的文本内容，无法获取子标签的文本内容</li>
-<li>//text()可以将标签及子标签的文本内容全部输出，包含标签之间的换行符</li>
-<li>contains(@class, “hao123”)：查找class属性值中包含hao123的标签，一般用于class有多个值的情况</li>
-<li><p><strong>以下面xml文档为例</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">html_code=</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">            	&lt;a href=&quot;https://www.baidu.com&quot; class=&quot;first_a&quot;&gt;百度一下&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">            	&lt;a href=&quot;https://mail.qq.com&quot; id=&quot;second_a&quot;&gt;QQ邮箱&lt;/a&gt;</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">            	&lt;a href=&quot;https://www.taobao.com&quot;&gt;淘宝网&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">                &lt;a href=&quot;https://pypi.python.org&quot; class=&quot;first_a&quot;&gt;Python官网&lt;/a&gt;</span><br><span class="line">                &lt;a href=&quot;https://pypi.python.org&quot; class=&quot;second_a&quot;&gt;Python&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;p class=&quot;one&quot;&gt;first_p_tag&lt;/p&gt;</span><br><span class="line">        &lt;p id=&quot;second&quot;&gt;second_p_tag&lt;/p&gt;</span><br><span class="line">        &lt;div class=&quot;one&quot;&gt;</span><br><span class="line">            &lt;p class=&quot;first second third&quot;&gt;11111111&lt;/p&gt;</span><br><span class="line">            &lt;p class=&quot;hao123&quot;&gt;hao123.com&lt;/p&gt;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;我是神&lt;span&gt;zhiyou&lt;/span&gt;&lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">    &lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>查找</strong></li>
-</ul>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> html_obj = etree.HTML(html_code)</span><br><span class="line">print(type(html_obj))</span><br><span class="line">print(html_obj)</span><br><span class="line">#查找div中的a标签</span><br><span class="line">div_a = html_obj.xpath(&apos;//div/a/text()&apos;)[0]</span><br><span class="line">print(div_a)</span><br><span class="line">second_a = html_obj.xpath(&apos;//ul/li[last()]/a[@class=&quot;second_a&quot;]/text()&apos;)[0]</span><br><span class="line">print(second_a)</span><br><span class="line">img = html_obj.xpath(&apos;//body/ul/li/a/@href&apos;)</span><br><span class="line">print(img)</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;lxml.etree._Element&apos;&gt;</span><br><span class="line">&lt;Element html at 0x23f4dfeef08&gt;</span><br><span class="line">我是神</span><br><span class="line">Python</span><br><span class="line">[&apos;https://www.baidu.com&apos;, &apos;https://mail.qq.com&apos;, &apos;https://www.taobao.com&apos;, &apos;https://pypi.python.org&apos;, &apos;https://pypi.python.org&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>xpath拿到得都是一个个的ElementTree对象，所以如果需要查找内容的话，还需要遍历拿到数据的列表<br><strong>更多详情可以参考<a href="http://www.w3school.com.cn/xpath/xpath_syntax.asp" target="_blank" rel="noopener">W3school</a></strong></p>
-</li>
-</ul>
 
       
     </div>
@@ -402,7 +363,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据解析/" rel="tag"><i class="fa fa-tag"></i> 数据解析</a>
+            <a href="/tags/去重/" rel="tag"><i class="fa fa-tag"></i> 去重</a>
           
         </div>
       
@@ -415,8 +376,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/18/python/" rel="next" title="正则表达式">
-                <i class="fa fa-chevron-left"></i> 正则表达式
+              <a href="/2019/01/02/qgz/" rel="next" title="行业潜•规则集锦">
+                <i class="fa fa-chevron-left"></i> 行业潜•规则集锦
               </a>
             
           </div>
@@ -424,10 +385,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/14/txt/" rel="prev" title="TXT文本存储">
-                TXT文本存储 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -597,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-常见数据类型"><span class="nav-number">1.</span> <span class="nav-text">一.常见数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装"><span class="nav-number">2.</span> <span class="nav-text">二.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-语法使用"><span class="nav-number">3.</span> <span class="nav-text">三.语法使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-ensp-前言"><span class="nav-number">1.</span> <span class="nav-text">一 前言</span></a></li></ol></div>
             
 
           </div>
